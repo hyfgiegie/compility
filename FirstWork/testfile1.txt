@@ -1,1 +1,79 @@
-this is a test
+//
+// Created by h'y'f on 2023/9/11.
+//
+
+const int const_num0 = 0;
+const int const_num1 = 1, const_num2 = 2 / 2 + 1;
+const int const_arr0[2] = {0, 1};
+const int const_arr1[2][2] = {{2, 3}, {4, 5}};
+int var0;
+int var1 = 1, var2 = 2, var_arr0[2] = {2, 2}, var_arr1[2][2] = {{2, 2}, {2, 2}}, var_arr2[2], var_arr3[2][2];
+
+void func0() {
+    return;
+}
+
+int func1() {
+    return 0;
+}
+
+int func2(int n) {
+    return n;
+}
+
+int func3(int n, int m) {
+    return m;
+}
+
+int func4(int n[], int m[][2]) {
+    return 0;
+}
+
+int main() {
+    int n = -+-1;
+    var0 = 1 + (2 + 3 * 2) - (4 % 2) + 14 / 2;
+    3 + 22 * 21 - 3 * 22;
+    ;
+    {}
+    {
+        int n = 2 * 3;
+    }
+    if (n > 0 && n <= 100 && func1() && 0 && n == 1) n = 2;
+    if (n >= 1 || n < 100 || func1() || 1 || n != 1) n = 3; else n = 4;
+    if (!0) printf("hello\n");
+    int i;
+    for (i = 0; i < 2; i = i + 1) n = n - 1;
+    for (i = 0; i < 1; i = i + 1) break;
+    for (i = 0; i < 2; i = i + 1) if (i < 2) continue; else n = n + 1;
+    int j = 0;
+    for (; j < 2; j = j + 1) {
+        n = n + 1;
+    }
+    j = 0;
+    for (; j < 1; ) {
+        j = j + 1;
+    }
+    for (j = 0;;j = j + 1) {
+        if (j > 1) break;
+    }
+    for (;;) break;
+    for (j = 0; j < 1;) break;
+    for (;;j = j + 1) break;
+    for (j = 0;;) break;
+    for (j = 0; j != 0; j = j + 1) ;
+
+    n = getint();
+    printf("111\n");
+    printf("%d", n);
+    -func2(n);
+    +func3(const_num0, 1);
+    func4(var_arr0, var_arr1);
+    func4(var_arr0, var_arr1);
+    func4(var_arr1[0], var_arr1);
+    -3;
+    +55;
+    var0 = 0;
+    var_arr0[0] = 3;
+    var_arr1[0][1] = 5;
+    return 0;
+}
