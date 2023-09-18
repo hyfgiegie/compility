@@ -10,32 +10,32 @@ public class Compiler {
         FileReader fileReader = null;
         FileWriter fileWriter = null;
         File srcFile = new File("testfile.txt");
-        File dstFile = new File("output.txt");
         try {
             fileReader = new FileReader(srcFile);
-            fileWriter = new FileWriter(dstFile);
-
             ArrayList<Integer> content = new ArrayList<>();
-
             int ch;
             while ((ch = fileReader.read()) != -1) {
                 content.add(ch);
             }
 
-
-
             Lexer lexer = new Lexer(content);
-            lexer.parseText();
-
-            ArrayList<Token> tokens = lexer.getTokenList();
-
-            for (int i = 0 ; i < tokens.size(); i++) {
-                Token token = tokens.get(i);
-                if (i < tokens.size() - 1) {
-                    fileWriter.write(token.getType() + ' ' + token.getValue() + '\n');
-                } else {
-                    fileWriter.write(token.getType() + ' ' + token.getValue());
+            boolean result = lexer.parseText();
+            if (result) {
+                File dstFile = new File("output.txt");
+                fileWriter = new FileWriter(dstFile);
+                ArrayList<Token> tokens = lexer.getTokenList();
+                for (int i = 0; i < tokens.size(); i++) {
+                    Token token = tokens.get(i);
+                    if (i < tokens.size() - 1) {
+                        fileWriter.write(token.getType() + ' ' + token.getValue() + '\n');
+                    } else {
+                        fileWriter.write(token.getType() + ' ' + token.getValue());
+                    }
                 }
+            } else {
+                File errorFile = new File("error.txt");
+                fileWriter = new FileWriter(errorFile);
+                fileWriter.write(lexer.getErrorContent());
             }
 
             fileReader.close();

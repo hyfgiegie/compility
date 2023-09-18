@@ -3,7 +3,7 @@ package src;
 import java.util.HashMap;
 
 public class SignalTable {
-    private static HashMap<String, String> sigTable = new HashMap<>();
+    private static final HashMap<String, String> sigTable = new HashMap<>();
 
     public SignalTable() {
         sigTable.put("!", "NOT");

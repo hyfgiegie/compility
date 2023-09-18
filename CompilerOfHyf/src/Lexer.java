@@ -6,10 +6,12 @@ public class Lexer {
     private StringBuffer tokenUnit;
     private int position;
     private int lines;
-    private ArrayList<Integer> content;
-    private int length;
-    private ArrayList<Token> tokenList;
-    private SignalTable signalTable;
+    private final ArrayList<Integer> content;
+    private final int length;
+    private final ArrayList<Token> tokenList;
+    private final SignalTable signalTable;
+
+    private String errorContent;
 
     public Lexer(ArrayList<Integer> content) {
         this.tokenUnit = new StringBuffer();
@@ -19,42 +21,30 @@ public class Lexer {
         this.length = content.size();
         this.tokenList = new ArrayList<>();
         this.signalTable = new SignalTable();
+        this.errorContent = "";
     }
 
     private void skipWhite() {
-        if (position >= length) {
-            return;
-        }
-        while (content.get(position) <= 32) {
-            if (content.get(position) == '\n') {
-                lines++;
-            }
+        while (position < length &&
+                content.get(position) <= 32) {
+            if (content.get(position) == '\n') lines++;
             position++;
-            if (position >= length) {
-                return;
-            }
         }
     }
 
     private void skipThisLine() {
-        if (position >= length) {
-            return;
-        }
-        while (!(content.get(position) == 13 || content.get(position) == 10)) {
+        while (position < length &&
+                content.get(position) != 13 &&
+                content.get(position) != 10) {
             position++;
-            if (position >= length) {
-                return;
-            }
         }
+        lines++;
     }
 
     private void skipMultiLines() {
-        if (position >= length - 1) {
-            return;
-        }
-
         while (position < length - 1) {
-            if (content.get(position) == '*' && content.get(position + 1) == '/') {
+            if (content.get(position) == '*' &&
+                    content.get(position + 1) == '/') {
                 break;
             }
             if (content.get(position) == '\n') lines++;
@@ -67,55 +57,119 @@ public class Lexer {
         position--;
     }
 
+    private int read() {
+        if (position < length) {
+            return content.get(position++);
+        } else {
+            return -1;
+        }
+    }
+
+    private boolean isNum(int ch) {
+        return ch >= '0' && ch <= '9';
+    }
+
+    private boolean isLetter(int ch) {
+        if (ch >= 'A' && ch <= 'Z') {
+            return true;
+        }
+        return ch >= 'a' && ch <= 'z';
+    }
+
+    private boolean isLegalSig(int ch) {
+        String normal = "!<>=&|/+-*%;,()[]{}";
+        return normal.indexOf((char) ch) != -1;
+    }
+
+    public boolean parseText() {
+        skipWhite();
+        while (parseUnit()) {
+            skipWhite();
+        }
+        return errorContent.length() == 0;
+    }
+
     //return false means end of text or error
     private boolean parseUnit() {
-        int ch;
-        tokenUnit = new StringBuffer();
         skipWhite();
-        ch = read();
-        tokenUnit.append((char) ch);
+        tokenUnit = new StringBuffer();
+
+        int ch = read();
         if (ch == -1) {
+            //end
             return false;
         } else if (isLetter(ch) || ch == '_') {
+            tokenUnit.append((char) ch);
             parseIdent();
             String type = signalTable.getSym(tokenUnit.toString());
-            if (type == null) {
-                tokenList.add(new Token("IDENFR", tokenUnit.toString()));
-            } else {
-                tokenList.add(new Token(type, tokenUnit.toString()));
-            }
+            if (type == null) tokenList.add(new Token("IDENFR", tokenUnit.toString()));
+            else tokenList.add(new Token(type, tokenUnit.toString()));
         } else if (isNum(ch)) {
+            tokenUnit.append((char) ch);
             parseNum();
             tokenList.add(new Token("INTCON", tokenUnit.toString()));
         } else if (ch == '"') {
+            tokenUnit.append((char) ch);
             parseString();
-            if (tokenUnit.charAt(tokenUnit.length() - 1) != '"' || tokenUnit.length() < 2) {
+            if (tokenUnit.length() < 2) {
                 //error
+                errorContent = "There is an unknown signal " + tokenUnit.toString() + " in lines-" + lines;
+                return false;
+            } else if (tokenUnit.charAt(tokenUnit.length() - 1) != '"') {
+                errorContent = "There is an unfinished formatString in lines-" + lines;
                 return false;
             }
             tokenList.add(new Token("STRCON", tokenUnit.toString()));
-        } else {
+        } else if (isLegalSig(ch)) {
+            tokenUnit.append((char) ch);
             parseSignal();
             String type = signalTable.getSym(tokenUnit.toString());
-            if (type == null) {
-                if (tokenUnit.toString().equals("//") || tokenUnit.toString().equals("/*")) {
-                    return true;
-                } else {
-                    //error
-                    return false;
+
+            //not comments
+            if (!tokenUnit.toString().equals("//") &&
+                    !tokenUnit.toString().equals("/*")) {
+                if (type != null) tokenList.add(new Token(type, tokenUnit.toString()));
+                else {
+                    errorContent = "There is an unknown signal " + tokenUnit.toString() + " in lines-" + lines;
+                    return false;//means error of single | or &
                 }
             }
-            tokenList.add(new Token(type, tokenUnit.toString()));
+        } else {
+            //error of un-known signal
+            errorContent = "There is an unknown signal " + (char) ch + " in lines-" + lines;
+            return false;
         }
         return true;
     }
 
-    private int read() {
-        position++;
-        if (position <= length) {
-            return content.get(position - 1);
+    private void parseIdent() {
+        int ch = read();
+        while (isNum(ch) || isLetter(ch) || ch == '_') {
+            tokenUnit.append((char) ch);
+            ch = read();
+        }
+        flashBack();
+    }
+
+    private void parseNum() {
+        int ch = read();
+        while (isNum(ch)) {
+            tokenUnit.append((char) ch);
+            ch = read();
+        }
+        flashBack();
+    }
+
+    private void parseString() {
+        int ch = read();
+        while (ch != '"' && ch != -1) {
+            tokenUnit.append((char) ch);
+            ch = read();
+        }
+        if (ch == -1) {
+            flashBack();
         } else {
-            return -1;
+            tokenUnit.append((char) ch);
         }
     }
 
@@ -138,7 +192,6 @@ public class Lexer {
                 } else {
                     flashBack();
                     //error
-                    System.out.println("Error signal of single '&' in lines-\n" + lines);
                 }
                 break;
             case '|':
@@ -147,7 +200,6 @@ public class Lexer {
                 } else {
                     flashBack();
                     //error
-                    System.out.println("Error signal of single '|' in lines-\n" + lines);
                 }
                 break;
             case '/':
@@ -174,71 +226,16 @@ public class Lexer {
             case ']':
             case '{':
             case '}':
-                break;
             default:
-                System.out.println("There is an un-known signal-\n" + (char) ch + " in lines-" + lines);
                 break;
-        }
-    }
-
-    private void parseString() {
-        int ch = read();
-        while (ch != '"' && ch != -1) {
-            tokenUnit.append((char) ch);
-            ch = read();
-        }
-        if (ch == -1) {
-            flashBack();
-            System.out.println("There is an un-finished string in lines-\n" + lines);
-        } else {
-            tokenUnit.append((char) ch);
-        }
-    }
-
-    private void parseNum() {
-        int ch = read();
-        while (isNum(ch)) {
-            tokenUnit.append((char) ch);
-            ch = read();
-        }
-        flashBack();
-    }
-
-    private void parseIdent() {
-        int ch = read();
-
-        while (isNum(ch) || isLetter(ch) || ch == '_') {
-            tokenUnit.append((char) ch);
-            ch = read();
-        }
-        flashBack();
-    }
-
-    private boolean isNum(int ch) {
-        if (ch >= '0' && ch <= '9') {
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isLetter(int ch) {
-        if (ch >= 'A' && ch <= 'Z') {
-            return true;
-        }
-        if (ch >= 'a' && ch <= 'z') {
-            return true;
-        }
-        return false;
-    }
-
-    public void parseText() {
-        skipWhite();
-        while (parseUnit()) {
-            skipWhite();
         }
     }
 
     public ArrayList<Token> getTokenList() {
         return tokenList;
+    }
+
+    public String getErrorContent() {
+        return errorContent;
     }
 }
