@@ -26,7 +26,7 @@ public class Lexer {
             return;
         }
         while (content.get(position) <= 32) {
-            if (content.get(position) != 32) {
+            if (content.get(position) == '\n') {
                 lines++;
             }
             position++;
