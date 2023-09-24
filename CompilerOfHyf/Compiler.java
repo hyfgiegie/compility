@@ -24,14 +24,7 @@ public class Compiler {
                 File dstFile = new File("output.txt");
                 fileWriter = new FileWriter(dstFile);
                 ArrayList<Token> tokens = lexer.getTokenList();
-                for (int i = 0; i < tokens.size(); i++) {
-                    Token token = tokens.get(i);
-                    if (i < tokens.size() - 1) {
-                        fileWriter.write(token.getType() + ' ' + token.getValue() + '\n');
-                    } else {
-                        fileWriter.write(token.getType() + ' ' + token.getValue());
-                    }
-                }
+
             } else {
                 File errorFile = new File("error.txt");
                 fileWriter = new FileWriter(errorFile);
