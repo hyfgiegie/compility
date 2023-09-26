@@ -34,20 +34,8 @@ public class Factor {
         return token;
     }
 
-    public void setToken(Token token) {
-        this.token = token;
-    }
-
     public ArrayList<Factor> getChildren() {
         return children;
-    }
-
-    public void reverseChildren() {
-        ArrayList<Factor> factors = new ArrayList<>();
-        for (int i = children.size() - 1; i >= 0; i--) {
-            factors.add(children.get(i));
-        }
-        children = factors;
     }
 
 }

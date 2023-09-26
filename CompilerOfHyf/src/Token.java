@@ -3,10 +3,12 @@ package src;
 public class Token {
     private String type;
     private String value;
+    private int lines;
 
-    public Token(String type, String value) {
+    public Token(String type, String value, int lines) {
         this.type = type;
         this.value = value;
+        this.lines = lines;
     }
 
     public String getType() {

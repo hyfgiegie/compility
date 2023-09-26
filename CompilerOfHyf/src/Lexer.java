@@ -102,12 +102,12 @@ public class Lexer {
             tokenUnit.append((char) ch);
             parseIdent();
             String type = signalTable.getSym(tokenUnit.toString());
-            if (type == null) tokenList.add(new Token("IDENFR", tokenUnit.toString()));
-            else tokenList.add(new Token(type, tokenUnit.toString()));
+            if (type == null) tokenList.add(new Token("IDENFR", tokenUnit.toString(), lines));
+            else tokenList.add(new Token(type, tokenUnit.toString(), lines));
         } else if (isNum(ch)) {
             tokenUnit.append((char) ch);
             parseNum();
-            tokenList.add(new Token("INTCON", tokenUnit.toString()));
+            tokenList.add(new Token("INTCON", tokenUnit.toString(), lines));
         } else if (ch == '"') {
             tokenUnit.append((char) ch);
             parseString();
@@ -119,7 +119,7 @@ public class Lexer {
                 errorContent = "There is an unfinished formatString in lines-" + lines;
                 return false;
             }
-            tokenList.add(new Token("STRCON", tokenUnit.toString()));
+            tokenList.add(new Token("STRCON", tokenUnit.toString(), lines));
         } else if (isLegalSig(ch)) {
             tokenUnit.append((char) ch);
             parseSignal();
@@ -128,7 +128,7 @@ public class Lexer {
             //not comments
             if (!tokenUnit.toString().equals("//") &&
                     !tokenUnit.toString().equals("/*")) {
-                if (type != null) tokenList.add(new Token(type, tokenUnit.toString()));
+                if (type != null) tokenList.add(new Token(type, tokenUnit.toString(), lines));
                 else {
                     errorContent = "There is an unknown signal " + tokenUnit.toString() + " in lines-" + lines;
                     return false;//means error of single | or &
