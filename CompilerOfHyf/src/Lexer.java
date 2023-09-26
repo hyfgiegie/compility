@@ -16,7 +16,7 @@ public class Lexer {
     public Lexer(ArrayList<Integer> content) {
         this.tokenUnit = new StringBuffer();
         this.position = 0;
-        this.lines = 0;
+        this.lines = 1;
         this.content = content;
         this.length = content.size();
         this.tokenList = new ArrayList<>();
@@ -38,7 +38,6 @@ public class Lexer {
                 content.get(position) != 10) {
             position++;
         }
-        lines++;
     }
 
     private void skipMultiLines() {

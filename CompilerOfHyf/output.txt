@@ -1,8 +1,8 @@
-CONSTTK const
-INTTK int
-IDENFR const_num0
-ASSIGN =
-INTCON 0
+CONSTTK const 5
+INTTK int 5
+IDENFR const_num0 5
+ASSIGN = 5
+INTCON 0 5
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -11,13 +11,13 @@ INTCON 0
 <ConstExp>
 <ConstInitVal>
 <ConstDef>
-SEMICN ;
+SEMICN ; 5
 <ConstDecl>
-CONSTTK const
-INTTK int
-IDENFR const_num1
-ASSIGN =
-INTCON 1
+CONSTTK const 6
+INTTK int 6
+IDENFR const_num1 6
+ASSIGN = 6
+INTCON 1 6
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -26,23 +26,23 @@ INTCON 1
 <ConstExp>
 <ConstInitVal>
 <ConstDef>
-COMMA ,
-IDENFR const_num2
-ASSIGN =
-INTCON 2
+COMMA , 6
+IDENFR const_num2 6
+ASSIGN = 6
+INTCON 2 6
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
-DIV /
-INTCON 2
+DIV / 6
+INTCON 2 6
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
-PLUS +
-INTCON 1
+PLUS + 6
+INTCON 1 6
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -51,32 +51,23 @@ INTCON 1
 <ConstExp>
 <ConstInitVal>
 <ConstDef>
-SEMICN ;
+SEMICN ; 6
 <ConstDecl>
-CONSTTK const
-INTTK int
-IDENFR const_arr0
-LBRACK [
-INTCON 2
+CONSTTK const 7
+INTTK int 7
+IDENFR const_arr0 7
+LBRACK [ 7
+INTCON 2 7
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <ConstExp>
-RBRACK ]
-ASSIGN =
-LBRACE {
-INTCON 0
-<Number>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-<AddExp>
-<ConstExp>
-<ConstInitVal>
-COMMA ,
-INTCON 1
+RBRACK ] 7
+ASSIGN = 7
+LBRACE { 7
+INTCON 0 7
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -84,45 +75,45 @@ INTCON 1
 <AddExp>
 <ConstExp>
 <ConstInitVal>
-RBRACE }
+COMMA , 7
+INTCON 1 7
+<Number>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+<ConstExp>
+<ConstInitVal>
+RBRACE } 7
 <ConstInitVal>
 <ConstDef>
-SEMICN ;
+SEMICN ; 7
 <ConstDecl>
-CONSTTK const
-INTTK int
-IDENFR const_arr1
-LBRACK [
-INTCON 2
+CONSTTK const 8
+INTTK int 8
+IDENFR const_arr1 8
+LBRACK [ 8
+INTCON 2 8
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <ConstExp>
-RBRACK ]
-LBRACK [
-INTCON 2
+RBRACK ] 8
+LBRACK [ 8
+INTCON 2 8
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <ConstExp>
-RBRACK ]
-ASSIGN =
-LBRACE {
-LBRACE {
-INTCON 2
-<Number>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-<AddExp>
-<ConstExp>
-<ConstInitVal>
-COMMA ,
-INTCON 3
+RBRACK ] 8
+ASSIGN = 8
+LBRACE { 8
+LBRACE { 8
+INTCON 2 8
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -130,11 +121,8 @@ INTCON 3
 <AddExp>
 <ConstExp>
 <ConstInitVal>
-RBRACE }
-<ConstInitVal>
-COMMA ,
-LBRACE {
-INTCON 4
+COMMA , 8
+INTCON 3 8
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -142,8 +130,11 @@ INTCON 4
 <AddExp>
 <ConstExp>
 <ConstInitVal>
-COMMA ,
-INTCON 5
+RBRACE } 8
+<ConstInitVal>
+COMMA , 8
+LBRACE { 8
+INTCON 4 8
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -151,22 +142,31 @@ INTCON 5
 <AddExp>
 <ConstExp>
 <ConstInitVal>
-RBRACE }
+COMMA , 8
+INTCON 5 8
+<Number>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+<ConstExp>
 <ConstInitVal>
-RBRACE }
+RBRACE } 8
+<ConstInitVal>
+RBRACE } 8
 <ConstInitVal>
 <ConstDef>
-SEMICN ;
+SEMICN ; 8
 <ConstDecl>
-INTTK int
-IDENFR var0
+INTTK int 9
+IDENFR var0 9
 <VarDef>
-SEMICN ;
+SEMICN ; 9
 <VarDecl>
-INTTK int
-IDENFR var1
-ASSIGN =
-INTCON 1
+INTTK int 10
+IDENFR var1 10
+ASSIGN = 10
+INTCON 1 10
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -175,10 +175,10 @@ INTCON 1
 <Exp>
 <InitVal>
 <VarDef>
-COMMA ,
-IDENFR var2
-ASSIGN =
-INTCON 2
+COMMA , 10
+IDENFR var2 10
+ASSIGN = 10
+INTCON 2 10
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -187,20 +187,20 @@ INTCON 2
 <Exp>
 <InitVal>
 <VarDef>
-COMMA ,
-IDENFR var_arr0
-LBRACK [
-INTCON 2
+COMMA , 10
+IDENFR var_arr0 10
+LBRACK [ 10
+INTCON 2 10
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <ConstExp>
-RBRACK ]
-ASSIGN =
-LBRACE {
-INTCON 2
+RBRACK ] 10
+ASSIGN = 10
+LBRACE { 10
+INTCON 2 10
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -208,8 +208,8 @@ INTCON 2
 <AddExp>
 <Exp>
 <InitVal>
-COMMA ,
-INTCON 2
+COMMA , 10
+INTCON 2 10
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -217,33 +217,33 @@ INTCON 2
 <AddExp>
 <Exp>
 <InitVal>
-RBRACE }
+RBRACE } 10
 <InitVal>
 <VarDef>
-COMMA ,
-IDENFR var_arr1
-LBRACK [
-INTCON 2
+COMMA , 10
+IDENFR var_arr1 10
+LBRACK [ 10
+INTCON 2 10
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <ConstExp>
-RBRACK ]
-LBRACK [
-INTCON 2
+RBRACK ] 10
+LBRACK [ 10
+INTCON 2 10
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <ConstExp>
-RBRACK ]
-ASSIGN =
-LBRACE {
-LBRACE {
-INTCON 2
+RBRACK ] 10
+ASSIGN = 10
+LBRACE { 10
+LBRACE { 10
+INTCON 2 10
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -251,8 +251,8 @@ INTCON 2
 <AddExp>
 <Exp>
 <InitVal>
-COMMA ,
-INTCON 2
+COMMA , 10
+INTCON 2 10
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -260,11 +260,11 @@ INTCON 2
 <AddExp>
 <Exp>
 <InitVal>
-RBRACE }
+RBRACE } 10
 <InitVal>
-COMMA ,
-LBRACE {
-INTCON 2
+COMMA , 10
+LBRACE { 10
+INTCON 2 10
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -272,8 +272,8 @@ INTCON 2
 <AddExp>
 <Exp>
 <InitVal>
-COMMA ,
-INTCON 2
+COMMA , 10
+INTCON 2 10
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -281,182 +281,182 @@ INTCON 2
 <AddExp>
 <Exp>
 <InitVal>
-RBRACE }
+RBRACE } 10
 <InitVal>
-RBRACE }
+RBRACE } 10
 <InitVal>
 <VarDef>
-COMMA ,
-IDENFR var_arr2
-LBRACK [
-INTCON 2
+COMMA , 10
+IDENFR var_arr2 10
+LBRACK [ 10
+INTCON 2 10
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <ConstExp>
-RBRACK ]
+RBRACK ] 10
 <VarDef>
-COMMA ,
-IDENFR var_arr3
-LBRACK [
-INTCON 2
+COMMA , 10
+IDENFR var_arr3 10
+LBRACK [ 10
+INTCON 2 10
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <ConstExp>
-RBRACK ]
-LBRACK [
-INTCON 2
+RBRACK ] 10
+LBRACK [ 10
+INTCON 2 10
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <ConstExp>
-RBRACK ]
+RBRACK ] 10
 <VarDef>
-SEMICN ;
+SEMICN ; 10
 <VarDecl>
-VOIDTK void
+VOIDTK void 12
 <FuncType>
-IDENFR func0
-LPARENT (
-RPARENT )
-LBRACE {
-RETURNTK return
-SEMICN ;
+IDENFR func0 12
+LPARENT ( 12
+RPARENT ) 12
+LBRACE { 12
+RETURNTK return 13
+SEMICN ; 13
 <Stmt>
-RBRACE }
+RBRACE } 14
 <Block>
 <FuncDef>
-INTTK int
+INTTK int 16
 <FuncType>
-IDENFR func1
-LPARENT (
-RPARENT )
-LBRACE {
-RETURNTK return
-INTCON 0
+IDENFR func1 16
+LPARENT ( 16
+RPARENT ) 16
+LBRACE { 16
+RETURNTK return 17
+INTCON 0 17
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 17
 <Stmt>
-RBRACE }
+RBRACE } 18
 <Block>
 <FuncDef>
-INTTK int
+INTTK int 20
 <FuncType>
-IDENFR func2
-LPARENT (
-INTTK int
-IDENFR n
+IDENFR func2 20
+LPARENT ( 20
+INTTK int 20
+IDENFR n 20
 <FuncFParam>
 <FuncFParams>
-RPARENT )
-LBRACE {
-RETURNTK return
-IDENFR n
+RPARENT ) 20
+LBRACE { 20
+RETURNTK return 21
+IDENFR n 21
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 21
 <Stmt>
-RBRACE }
+RBRACE } 22
 <Block>
 <FuncDef>
-INTTK int
+INTTK int 24
 <FuncType>
-IDENFR func3
-LPARENT (
-INTTK int
-IDENFR n
+IDENFR func3 24
+LPARENT ( 24
+INTTK int 24
+IDENFR n 24
 <FuncFParam>
-COMMA ,
-INTTK int
-IDENFR m
+COMMA , 24
+INTTK int 24
+IDENFR m 24
 <FuncFParam>
 <FuncFParams>
-RPARENT )
-LBRACE {
-RETURNTK return
-IDENFR m
+RPARENT ) 24
+LBRACE { 24
+RETURNTK return 25
+IDENFR m 25
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 25
 <Stmt>
-RBRACE }
+RBRACE } 26
 <Block>
 <FuncDef>
-INTTK int
+INTTK int 28
 <FuncType>
-IDENFR func4
-LPARENT (
-INTTK int
-IDENFR n
-LBRACK [
-RBRACK ]
+IDENFR func4 28
+LPARENT ( 28
+INTTK int 28
+IDENFR n 28
+LBRACK [ 28
+RBRACK ] 28
 <FuncFParam>
-COMMA ,
-INTTK int
-IDENFR m
-LBRACK [
-RBRACK ]
-LBRACK [
-INTCON 2
+COMMA , 28
+INTTK int 28
+IDENFR m 28
+LBRACK [ 28
+RBRACK ] 28
+LBRACK [ 28
+INTCON 2 28
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <ConstExp>
-RBRACK ]
+RBRACK ] 28
 <FuncFParam>
 <FuncFParams>
-RPARENT )
-LBRACE {
-RETURNTK return
-INTCON 0
+RPARENT ) 28
+LBRACE { 28
+RETURNTK return 29
+INTCON 0 29
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 29
 <Stmt>
-RBRACE }
+RBRACE } 30
 <Block>
 <FuncDef>
-INTTK int
-MAINTK main
-LPARENT (
-RPARENT )
-LBRACE {
-INTTK int
-IDENFR n
-ASSIGN =
-MINU -
+INTTK int 32
+MAINTK main 32
+LPARENT ( 32
+RPARENT ) 32
+LBRACE { 32
+INTTK int 33
+IDENFR n 33
+ASSIGN = 33
+MINU - 33
 <UnaryOp>
-PLUS +
+PLUS + 33
 <UnaryOp>
-MINU -
+MINU - 33
 <UnaryOp>
-INTCON 1
+INTCON 1 33
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -468,132 +468,132 @@ INTCON 1
 <Exp>
 <InitVal>
 <VarDef>
-SEMICN ;
+SEMICN ; 33
 <VarDecl>
-IDENFR var0
+IDENFR var0 34
 <LVal>
-ASSIGN =
-INTCON 1
+ASSIGN = 34
+INTCON 1 34
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
-PLUS +
-LPARENT (
-INTCON 2
+PLUS + 34
+LPARENT ( 34
+INTCON 2 34
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
-PLUS +
-INTCON 3
+PLUS + 34
+INTCON 3 34
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
-MULT *
-INTCON 2
-<Number>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-<AddExp>
-<Exp>
-RPARENT )
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-<AddExp>
-MINU -
-LPARENT (
-INTCON 4
-<Number>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-MOD %
-INTCON 2
+MULT * 34
+INTCON 2 34
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-RPARENT )
+RPARENT ) 34
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
-PLUS +
-INTCON 14
+MINU - 34
+LPARENT ( 34
+INTCON 4 34
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
-DIV /
-INTCON 2
+MOD % 34
+INTCON 2 34
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+RPARENT ) 34
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+PLUS + 34
+INTCON 14 34
+<Number>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+DIV / 34
+INTCON 2 34
+<Number>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+<Exp>
+SEMICN ; 34
 <Stmt>
-INTCON 3
+INTCON 3 35
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
-PLUS +
-INTCON 22
+PLUS + 35
+INTCON 22 35
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
-MULT *
-INTCON 21
+MULT * 35
+INTCON 21 35
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
-MINU -
-INTCON 3
+MINU - 35
+INTCON 3 35
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
-MULT *
-INTCON 22
+MULT * 35
+INTCON 22 35
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 35
 <Stmt>
-SEMICN ;
+SEMICN ; 36
 <Stmt>
-LBRACE {
-RBRACE }
+LBRACE { 37
+RBRACE } 37
 <Block>
 <Stmt>
-LBRACE {
-INTTK int
-IDENFR n
-ASSIGN =
-INTCON 2
+LBRACE { 38
+INTTK int 39
+IDENFR n 39
+ASSIGN = 39
+INTCON 2 39
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
-MULT *
-INTCON 3
+MULT * 39
+INTCON 3 39
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -602,22 +602,22 @@ INTCON 3
 <Exp>
 <InitVal>
 <VarDef>
-SEMICN ;
+SEMICN ; 39
 <VarDecl>
-RBRACE }
+RBRACE } 40
 <Block>
 <Stmt>
-IFTK if
-LPARENT (
-IDENFR n
+IFTK if 41
+LPARENT ( 41
+IDENFR n 41
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
-GRE >
-INTCON 0
+GRE > 41
+INTCON 0 41
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -626,16 +626,16 @@ INTCON 0
 <RelExp>
 <EqExp>
 <LAndExp>
-AND &&
-IDENFR n
+AND && 41
+IDENFR n 41
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
-LEQ <=
-INTCON 100
+LEQ <= 41
+INTCON 100 41
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -644,18 +644,18 @@ INTCON 100
 <RelExp>
 <EqExp>
 <LAndExp>
-AND &&
-IDENFR func1
-LPARENT (
-RPARENT )
+AND && 41
+IDENFR func1 41
+LPARENT ( 41
+RPARENT ) 41
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
 <EqExp>
 <LAndExp>
-AND &&
-INTCON 0
+AND && 41
+INTCON 0 41
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -664,8 +664,8 @@ INTCON 0
 <RelExp>
 <EqExp>
 <LAndExp>
-AND &&
-IDENFR n
+AND && 41
+IDENFR n 41
 <LVal>
 <PrimaryExp>
 <UnaryExp>
@@ -673,8 +673,8 @@ IDENFR n
 <AddExp>
 <RelExp>
 <EqExp>
-EQL ==
-INTCON 1
+EQL == 41
+INTCON 1 41
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -685,31 +685,31 @@ INTCON 1
 <LAndExp>
 <LOrExp>
 <Cond>
-RPARENT )
-IDENFR n
+RPARENT ) 41
+IDENFR n 41
 <LVal>
-ASSIGN =
-INTCON 2
+ASSIGN = 41
+INTCON 2 41
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 41
 <Stmt>
 <Stmt>
-IFTK if
-LPARENT (
-IDENFR n
+IFTK if 42
+LPARENT ( 42
+IDENFR n 42
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
-GEQ >=
-INTCON 1
+GEQ >= 42
+INTCON 1 42
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -719,16 +719,16 @@ INTCON 1
 <EqExp>
 <LAndExp>
 <LOrExp>
-OR ||
-IDENFR n
+OR || 42
+IDENFR n 42
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
-LSS <
-INTCON 100
+LSS < 42
+INTCON 100 42
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -738,10 +738,10 @@ INTCON 100
 <EqExp>
 <LAndExp>
 <LOrExp>
-OR ||
-IDENFR func1
-LPARENT (
-RPARENT )
+OR || 42
+IDENFR func1 42
+LPARENT ( 42
+RPARENT ) 42
 <UnaryExp>
 <MulExp>
 <AddExp>
@@ -749,8 +749,8 @@ RPARENT )
 <EqExp>
 <LAndExp>
 <LOrExp>
-OR ||
-INTCON 1
+OR || 42
+INTCON 1 42
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -760,8 +760,8 @@ INTCON 1
 <EqExp>
 <LAndExp>
 <LOrExp>
-OR ||
-IDENFR n
+OR || 42
+IDENFR n 42
 <LVal>
 <PrimaryExp>
 <UnaryExp>
@@ -769,8 +769,8 @@ IDENFR n
 <AddExp>
 <RelExp>
 <EqExp>
-NEQ !=
-INTCON 1
+NEQ != 42
+INTCON 1 42
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -781,38 +781,38 @@ INTCON 1
 <LAndExp>
 <LOrExp>
 <Cond>
-RPARENT )
-IDENFR n
+RPARENT ) 42
+IDENFR n 42
 <LVal>
-ASSIGN =
-INTCON 3
+ASSIGN = 42
+INTCON 3 42
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 42
 <Stmt>
-ELSETK else
-IDENFR n
+ELSETK else 42
+IDENFR n 42
 <LVal>
-ASSIGN =
-INTCON 4
+ASSIGN = 42
+INTCON 4 42
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 42
 <Stmt>
 <Stmt>
-IFTK if
-LPARENT (
-NOT !
+IFTK if 43
+LPARENT ( 43
+NOT ! 43
 <UnaryOp>
-INTCON 0
+INTCON 0 43
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -824,25 +824,25 @@ INTCON 0
 <LAndExp>
 <LOrExp>
 <Cond>
-RPARENT )
-PRINTFTK printf
-LPARENT (
-STRCON "hello\n"
-RPARENT )
-SEMICN ;
+RPARENT ) 43
+PRINTFTK printf 43
+LPARENT ( 43
+STRCON "hello\n" 43
+RPARENT ) 43
+SEMICN ; 43
 <Stmt>
 <Stmt>
-INTTK int
-IDENFR i
+INTTK int 44
+IDENFR i 44
 <VarDef>
-SEMICN ;
+SEMICN ; 44
 <VarDecl>
-FORTK for
-LPARENT (
-IDENFR i
+FORTK for 45
+LPARENT ( 45
+IDENFR i 45
 <LVal>
-ASSIGN =
-INTCON 0
+ASSIGN = 45
+INTCON 0 45
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -850,16 +850,16 @@ INTCON 0
 <AddExp>
 <Exp>
 <ForStmt>
-SEMICN ;
-IDENFR i
+SEMICN ; 45
+IDENFR i 45
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
-LSS <
-INTCON 2
+LSS < 45
+INTCON 2 45
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -870,18 +870,18 @@ INTCON 2
 <LAndExp>
 <LOrExp>
 <Cond>
-SEMICN ;
-IDENFR i
+SEMICN ; 45
+IDENFR i 45
 <LVal>
-ASSIGN =
-IDENFR i
+ASSIGN = 45
+IDENFR i 45
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
-PLUS +
-INTCON 1
+PLUS + 45
+INTCON 1 45
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -889,33 +889,33 @@ INTCON 1
 <AddExp>
 <Exp>
 <ForStmt>
-RPARENT )
-IDENFR n
+RPARENT ) 45
+IDENFR n 45
 <LVal>
-ASSIGN =
-IDENFR n
+ASSIGN = 45
+IDENFR n 45
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
-MINU -
-INTCON 1
+MINU - 45
+INTCON 1 45
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 45
 <Stmt>
 <Stmt>
-FORTK for
-LPARENT (
-IDENFR i
+FORTK for 46
+LPARENT ( 46
+IDENFR i 46
 <LVal>
-ASSIGN =
-INTCON 0
+ASSIGN = 46
+INTCON 0 46
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -923,16 +923,16 @@ INTCON 0
 <AddExp>
 <Exp>
 <ForStmt>
-SEMICN ;
-IDENFR i
+SEMICN ; 46
+IDENFR i 46
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
-LSS <
-INTCON 1
+LSS < 46
+INTCON 1 46
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -943,18 +943,18 @@ INTCON 1
 <LAndExp>
 <LOrExp>
 <Cond>
-SEMICN ;
-IDENFR i
+SEMICN ; 46
+IDENFR i 46
 <LVal>
-ASSIGN =
-IDENFR i
+ASSIGN = 46
+IDENFR i 46
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
-PLUS +
-INTCON 1
+PLUS + 46
+INTCON 1 46
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -962,17 +962,17 @@ INTCON 1
 <AddExp>
 <Exp>
 <ForStmt>
-RPARENT )
-BREAKTK break
-SEMICN ;
+RPARENT ) 46
+BREAKTK break 46
+SEMICN ; 46
 <Stmt>
 <Stmt>
-FORTK for
-LPARENT (
-IDENFR i
+FORTK for 47
+LPARENT ( 47
+IDENFR i 47
 <LVal>
-ASSIGN =
-INTCON 0
+ASSIGN = 47
+INTCON 0 47
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -980,16 +980,16 @@ INTCON 0
 <AddExp>
 <Exp>
 <ForStmt>
-SEMICN ;
-IDENFR i
+SEMICN ; 47
+IDENFR i 47
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
-LSS <
-INTCON 2
+LSS < 47
+INTCON 2 47
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -1000,18 +1000,18 @@ INTCON 2
 <LAndExp>
 <LOrExp>
 <Cond>
-SEMICN ;
-IDENFR i
+SEMICN ; 47
+IDENFR i 47
 <LVal>
-ASSIGN =
-IDENFR i
+ASSIGN = 47
+IDENFR i 47
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
-PLUS +
-INTCON 1
+PLUS + 47
+INTCON 1 47
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -1019,18 +1019,18 @@ INTCON 1
 <AddExp>
 <Exp>
 <ForStmt>
-RPARENT )
-IFTK if
-LPARENT (
-IDENFR i
+RPARENT ) 47
+IFTK if 47
+LPARENT ( 47
+IDENFR i 47
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
-LSS <
-INTCON 2
+LSS < 47
+INTCON 2 47
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -1041,36 +1041,36 @@ INTCON 2
 <LAndExp>
 <LOrExp>
 <Cond>
-RPARENT )
-CONTINUETK continue
-SEMICN ;
+RPARENT ) 47
+CONTINUETK continue 47
+SEMICN ; 47
 <Stmt>
-ELSETK else
-IDENFR n
+ELSETK else 47
+IDENFR n 47
 <LVal>
-ASSIGN =
-IDENFR n
+ASSIGN = 47
+IDENFR n 47
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
-PLUS +
-INTCON 1
+PLUS + 47
+INTCON 1 47
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 47
 <Stmt>
 <Stmt>
 <Stmt>
-INTTK int
-IDENFR j
-ASSIGN =
-INTCON 0
+INTTK int 48
+IDENFR j 48
+ASSIGN = 48
+INTCON 0 48
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -1079,20 +1079,20 @@ INTCON 0
 <Exp>
 <InitVal>
 <VarDef>
-SEMICN ;
+SEMICN ; 48
 <VarDecl>
-FORTK for
-LPARENT (
-SEMICN ;
-IDENFR j
+FORTK for 49
+LPARENT ( 49
+SEMICN ; 49
+IDENFR j 49
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
-LSS <
-INTCON 2
+LSS < 49
+INTCON 2 49
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -1103,18 +1103,18 @@ INTCON 2
 <LAndExp>
 <LOrExp>
 <Cond>
-SEMICN ;
-IDENFR j
+SEMICN ; 49
+IDENFR j 49
 <LVal>
-ASSIGN =
-IDENFR j
+ASSIGN = 49
+IDENFR j 49
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
-PLUS +
-INTCON 1
+PLUS + 49
+INTCON 1 49
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -1122,55 +1122,55 @@ INTCON 1
 <AddExp>
 <Exp>
 <ForStmt>
-RPARENT )
-LBRACE {
-IDENFR n
+RPARENT ) 49
+LBRACE { 49
+IDENFR n 50
 <LVal>
-ASSIGN =
-IDENFR n
+ASSIGN = 50
+IDENFR n 50
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
-PLUS +
-INTCON 1
+PLUS + 50
+INTCON 1 50
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 50
 <Stmt>
-RBRACE }
+RBRACE } 51
 <Block>
 <Stmt>
 <Stmt>
-IDENFR j
+IDENFR j 52
 <LVal>
-ASSIGN =
-INTCON 0
+ASSIGN = 52
+INTCON 0 52
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 52
 <Stmt>
-FORTK for
-LPARENT (
-SEMICN ;
-IDENFR j
+FORTK for 53
+LPARENT ( 53
+SEMICN ; 53
+IDENFR j 53
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
-LSS <
-INTCON 1
+LSS < 53
+INTCON 1 53
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -1181,38 +1181,38 @@ INTCON 1
 <LAndExp>
 <LOrExp>
 <Cond>
-SEMICN ;
-RPARENT )
-LBRACE {
-IDENFR j
+SEMICN ; 53
+RPARENT ) 53
+LBRACE { 53
+IDENFR j 54
 <LVal>
-ASSIGN =
-IDENFR j
+ASSIGN = 54
+IDENFR j 54
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
-PLUS +
-INTCON 1
+PLUS + 54
+INTCON 1 54
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 54
 <Stmt>
-RBRACE }
+RBRACE } 55
 <Block>
 <Stmt>
 <Stmt>
-FORTK for
-LPARENT (
-IDENFR j
+FORTK for 56
+LPARENT ( 56
+IDENFR j 56
 <LVal>
-ASSIGN =
-INTCON 0
+ASSIGN = 56
+INTCON 0 56
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -1220,19 +1220,19 @@ INTCON 0
 <AddExp>
 <Exp>
 <ForStmt>
-SEMICN ;
-SEMICN ;
-IDENFR j
+SEMICN ; 56
+SEMICN ; 56
+IDENFR j 56
 <LVal>
-ASSIGN =
-IDENFR j
+ASSIGN = 56
+IDENFR j 56
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
-PLUS +
-INTCON 1
+PLUS + 56
+INTCON 1 56
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -1240,19 +1240,19 @@ INTCON 1
 <AddExp>
 <Exp>
 <ForStmt>
-RPARENT )
-LBRACE {
-IFTK if
-LPARENT (
-IDENFR j
+RPARENT ) 56
+LBRACE { 56
+IFTK if 57
+LPARENT ( 57
+IDENFR j 57
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
-GRE >
-INTCON 1
+GRE > 57
+INTCON 1 57
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -1263,30 +1263,30 @@ INTCON 1
 <LAndExp>
 <LOrExp>
 <Cond>
-RPARENT )
-BREAKTK break
-SEMICN ;
+RPARENT ) 57
+BREAKTK break 57
+SEMICN ; 57
 <Stmt>
 <Stmt>
-RBRACE }
+RBRACE } 58
 <Block>
 <Stmt>
 <Stmt>
-FORTK for
-LPARENT (
-SEMICN ;
-SEMICN ;
-RPARENT )
-BREAKTK break
-SEMICN ;
+FORTK for 59
+LPARENT ( 59
+SEMICN ; 59
+SEMICN ; 59
+RPARENT ) 59
+BREAKTK break 59
+SEMICN ; 59
 <Stmt>
 <Stmt>
-FORTK for
-LPARENT (
-IDENFR j
+FORTK for 60
+LPARENT ( 60
+IDENFR j 60
 <LVal>
-ASSIGN =
-INTCON 0
+ASSIGN = 60
+INTCON 0 60
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -1294,103 +1294,16 @@ INTCON 0
 <AddExp>
 <Exp>
 <ForStmt>
-SEMICN ;
-IDENFR j
+SEMICN ; 60
+IDENFR j 60
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
-LSS <
-INTCON 1
-<Number>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-<AddExp>
-<RelExp>
-<EqExp>
-<LAndExp>
-<LOrExp>
-<Cond>
-SEMICN ;
-RPARENT )
-BREAKTK break
-SEMICN ;
-<Stmt>
-<Stmt>
-FORTK for
-LPARENT (
-SEMICN ;
-SEMICN ;
-IDENFR j
-<LVal>
-ASSIGN =
-IDENFR j
-<LVal>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-<AddExp>
-PLUS +
-INTCON 1
-<Number>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-<AddExp>
-<Exp>
-<ForStmt>
-RPARENT )
-BREAKTK break
-SEMICN ;
-<Stmt>
-<Stmt>
-FORTK for
-LPARENT (
-IDENFR j
-<LVal>
-ASSIGN =
-INTCON 0
-<Number>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-<AddExp>
-<Exp>
-<ForStmt>
-SEMICN ;
-SEMICN ;
-RPARENT )
-BREAKTK break
-SEMICN ;
-<Stmt>
-<Stmt>
-FORTK for
-LPARENT (
-IDENFR j
-<LVal>
-ASSIGN =
-INTCON 0
-<Number>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-<AddExp>
-<Exp>
-<ForStmt>
-SEMICN ;
-IDENFR j
-<LVal>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-<AddExp>
-<RelExp>
-<EqExp>
-NEQ !=
-INTCON 0
+LSS < 60
+INTCON 1 60
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -1401,18 +1314,27 @@ INTCON 0
 <LAndExp>
 <LOrExp>
 <Cond>
-SEMICN ;
-IDENFR j
+SEMICN ; 60
+RPARENT ) 60
+BREAKTK break 60
+SEMICN ; 60
+<Stmt>
+<Stmt>
+FORTK for 61
+LPARENT ( 61
+SEMICN ; 61
+SEMICN ; 61
+IDENFR j 61
 <LVal>
-ASSIGN =
-IDENFR j
+ASSIGN = 61
+IDENFR j 61
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
-PLUS +
-INTCON 1
+PLUS + 61
+INTCON 1 61
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -1420,43 +1342,121 @@ INTCON 1
 <AddExp>
 <Exp>
 <ForStmt>
-RPARENT )
-SEMICN ;
+RPARENT ) 61
+BREAKTK break 61
+SEMICN ; 61
 <Stmt>
 <Stmt>
-IDENFR n
+FORTK for 62
+LPARENT ( 62
+IDENFR j 62
 <LVal>
-ASSIGN =
-GETINTTK getint
-LPARENT (
-RPARENT )
-SEMICN ;
+ASSIGN = 62
+INTCON 0 62
+<Number>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+<Exp>
+<ForStmt>
+SEMICN ; 62
+SEMICN ; 62
+RPARENT ) 62
+BREAKTK break 62
+SEMICN ; 62
 <Stmt>
-PRINTFTK printf
-LPARENT (
-STRCON "111\n"
-RPARENT )
-SEMICN ;
 <Stmt>
-PRINTFTK printf
-LPARENT (
-STRCON "%d"
-COMMA ,
-IDENFR n
+FORTK for 63
+LPARENT ( 63
+IDENFR j 63
+<LVal>
+ASSIGN = 63
+INTCON 0 63
+<Number>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+<Exp>
+<ForStmt>
+SEMICN ; 63
+IDENFR j 63
+<LVal>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+<RelExp>
+<EqExp>
+NEQ != 63
+INTCON 0 63
+<Number>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+<RelExp>
+<EqExp>
+<LAndExp>
+<LOrExp>
+<Cond>
+SEMICN ; 63
+IDENFR j 63
+<LVal>
+ASSIGN = 63
+IDENFR j 63
+<LVal>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+PLUS + 63
+INTCON 1 63
+<Number>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+<Exp>
+<ForStmt>
+RPARENT ) 63
+SEMICN ; 63
+<Stmt>
+<Stmt>
+IDENFR n 65
+<LVal>
+ASSIGN = 65
+GETINTTK getint 65
+LPARENT ( 65
+RPARENT ) 65
+SEMICN ; 65
+<Stmt>
+PRINTFTK printf 66
+LPARENT ( 66
+STRCON "111\n" 66
+RPARENT ) 66
+SEMICN ; 66
+<Stmt>
+PRINTFTK printf 67
+LPARENT ( 67
+STRCON "%d" 67
+COMMA , 67
+IDENFR n 67
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-RPARENT )
-SEMICN ;
+RPARENT ) 67
+SEMICN ; 67
 <Stmt>
-MINU -
+MINU - 68
 <UnaryOp>
-IDENFR func2
-LPARENT (
-IDENFR n
+IDENFR func2 68
+LPARENT ( 68
+IDENFR n 68
 <LVal>
 <PrimaryExp>
 <UnaryExp>
@@ -1464,27 +1464,27 @@ IDENFR n
 <AddExp>
 <Exp>
 <FuncRParams>
-RPARENT )
+RPARENT ) 68
 <UnaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 68
 <Stmt>
-PLUS +
+PLUS + 69
 <UnaryOp>
-IDENFR func3
-LPARENT (
-IDENFR const_num0
+IDENFR func3 69
+LPARENT ( 69
+IDENFR const_num0 69
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-COMMA ,
-INTCON 1
+COMMA , 69
+INTCON 1 69
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -1492,25 +1492,25 @@ INTCON 1
 <AddExp>
 <Exp>
 <FuncRParams>
-RPARENT )
+RPARENT ) 69
 <UnaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 69
 <Stmt>
-IDENFR func4
-LPARENT (
-IDENFR var_arr0
+IDENFR func4 70
+LPARENT ( 70
+IDENFR var_arr0 70
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-COMMA ,
-IDENFR var_arr1
+COMMA , 70
+IDENFR var_arr1 70
 <LVal>
 <PrimaryExp>
 <UnaryExp>
@@ -1518,24 +1518,24 @@ IDENFR var_arr1
 <AddExp>
 <Exp>
 <FuncRParams>
-RPARENT )
+RPARENT ) 70
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 70
 <Stmt>
-IDENFR func4
-LPARENT (
-IDENFR var_arr0
+IDENFR func4 71
+LPARENT ( 71
+IDENFR var_arr0 71
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-COMMA ,
-IDENFR var_arr1
+COMMA , 71
+IDENFR var_arr1 71
 <LVal>
 <PrimaryExp>
 <UnaryExp>
@@ -1543,33 +1543,33 @@ IDENFR var_arr1
 <AddExp>
 <Exp>
 <FuncRParams>
-RPARENT )
+RPARENT ) 71
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 71
 <Stmt>
-IDENFR func4
-LPARENT (
-IDENFR var_arr1
-LBRACK [
-INTCON 0
+IDENFR func4 72
+LPARENT ( 72
+IDENFR var_arr1 72
+LBRACK [ 72
+INTCON 0 72
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-RBRACK ]
+RBRACK ] 72
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-COMMA ,
-IDENFR var_arr1
+COMMA , 72
+IDENFR var_arr1 72
 <LVal>
 <PrimaryExp>
 <UnaryExp>
@@ -1577,16 +1577,16 @@ IDENFR var_arr1
 <AddExp>
 <Exp>
 <FuncRParams>
-RPARENT )
+RPARENT ) 72
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 72
 <Stmt>
-MINU -
+MINU - 73
 <UnaryOp>
-INTCON 3
+INTCON 3 73
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -1594,11 +1594,11 @@ INTCON 3
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 73
 <Stmt>
-PLUS +
+PLUS + 74
 <UnaryOp>
-INTCON 55
+INTCON 55 74
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -1606,82 +1606,82 @@ INTCON 55
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 74
 <Stmt>
-IDENFR var0
+IDENFR var0 75
 <LVal>
-ASSIGN =
-INTCON 0
+ASSIGN = 75
+INTCON 0 75
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 75
 <Stmt>
-IDENFR var_arr0
-LBRACK [
-INTCON 0
+IDENFR var_arr0 76
+LBRACK [ 76
+INTCON 0 76
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-RBRACK ]
+RBRACK ] 76
 <LVal>
-ASSIGN =
-INTCON 3
+ASSIGN = 76
+INTCON 3 76
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 76
 <Stmt>
-IDENFR var_arr1
-LBRACK [
-INTCON 0
+IDENFR var_arr1 77
+LBRACK [ 77
+INTCON 0 77
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-RBRACK ]
-LBRACK [
-INTCON 1
+RBRACK ] 77
+LBRACK [ 77
+INTCON 1 77
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-RBRACK ]
+RBRACK ] 77
 <LVal>
-ASSIGN =
-INTCON 5
+ASSIGN = 77
+INTCON 5 77
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 77
 <Stmt>
-RETURNTK return
-INTCON 0
+RETURNTK return 78
+INTCON 0 78
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <Exp>
-SEMICN ;
+SEMICN ; 78
 <Stmt>
-RBRACE }
+RBRACE } 79
 <Block>
 <MainFuncDef>
 <CompUnit>

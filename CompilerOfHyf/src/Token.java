@@ -11,6 +11,10 @@ public class Token {
         this.lines = lines;
     }
 
+    public int getLines() {
+        return lines;
+    }
+
     public String getType() {
         return type;
     }

@@ -328,7 +328,7 @@ public class Parser {
                 || getCurToken().getValue().equals("int")) {
             blockItem.addChild(parseDecl());
         } else {
-//            System.out.println(getCurToken().getValue() + "" + tokens.get(position+1).getValue());
+//            System.out.println(tokens.get(position-1).getValue() + " " + getCurToken().getValue() + "" + tokens.get(position+1).getValue() + " " + getCurToken().getLines());
             blockItem.addChild(parseStmt());
         }
         return blockItem;
