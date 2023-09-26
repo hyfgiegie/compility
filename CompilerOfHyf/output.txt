@@ -13,7 +13,6 @@ INTCON 0
 <ConstDef>
 SEMICN ;
 <ConstDecl>
-
 CONSTTK const
 INTTK int
 IDENFR const_num1
@@ -30,13 +29,6 @@ INTCON 1
 COMMA ,
 IDENFR const_num2
 ASSIGN =
-INTCON 1
-<Number>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-<AddExp>
-PLUS +
 INTCON 2
 <Number>
 <PrimaryExp>
@@ -49,12 +41,18 @@ INTCON 2
 <UnaryExp>
 <MulExp>
 <AddExp>
+PLUS +
+INTCON 1
+<Number>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
 <ConstExp>
 <ConstInitVal>
 <ConstDef>
 SEMICN ;
 <ConstDecl>
-
 CONSTTK const
 INTTK int
 IDENFR const_arr0
@@ -475,13 +473,7 @@ SEMICN ;
 IDENFR var0
 <LVal>
 ASSIGN =
-INTCON 2
-<Number>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-DIV /
-INTCON 14
+INTCON 1
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -494,8 +486,15 @@ INTCON 2
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
-MOD %
-INTCON 4
+<AddExp>
+PLUS +
+INTCON 3
+<Number>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+MULT *
+INTCON 2
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -509,19 +508,12 @@ RPARENT )
 <AddExp>
 MINU -
 LPARENT (
-INTCON 2
+INTCON 4
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
-MULT *
-INTCON 3
-<Number>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-<AddExp>
-PLUS +
+MOD %
 INTCON 2
 <Number>
 <PrimaryExp>
@@ -535,7 +527,13 @@ RPARENT )
 <MulExp>
 <AddExp>
 PLUS +
-INTCON 1
+INTCON 14
+<Number>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+DIV /
+INTCON 2
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -544,33 +542,33 @@ INTCON 1
 <Exp>
 SEMICN ;
 <Stmt>
-INTCON 22
-<Number>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-MULT *
 INTCON 3
-<Number>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-<AddExp>
-MINU -
-INTCON 21
-<Number>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-MULT *
-INTCON 22
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 PLUS +
+INTCON 22
+<Number>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+MULT *
+INTCON 21
+<Number>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+MINU -
 INTCON 3
+<Number>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+MULT *
+INTCON 22
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -589,13 +587,13 @@ LBRACE {
 INTTK int
 IDENFR n
 ASSIGN =
-INTCON 3
+INTCON 2
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 MULT *
-INTCON 2
+INTCON 3
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -611,17 +609,16 @@ RBRACE }
 <Stmt>
 IFTK if
 LPARENT (
-INTCON 1
-<Number>
+IDENFR n
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
-<EqExp>
-EQL ==
-IDENFR n
-<LVal>
+GRE >
+INTCON 0
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -630,7 +627,15 @@ IDENFR n
 <EqExp>
 <LAndExp>
 AND &&
-INTCON 0
+IDENFR n
+<LVal>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+<RelExp>
+LEQ <=
+INTCON 100
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -650,16 +655,8 @@ RPARENT )
 <EqExp>
 <LAndExp>
 AND &&
-INTCON 100
+INTCON 0
 <Number>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-<AddExp>
-<RelExp>
-LEQ <=
-IDENFR n
-<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -668,16 +665,17 @@ IDENFR n
 <EqExp>
 <LAndExp>
 AND &&
-INTCON 0
-<Number>
+IDENFR n
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
-GRE >
-IDENFR n
-<LVal>
+<EqExp>
+EQL ==
+INTCON 1
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -703,17 +701,16 @@ SEMICN ;
 <Stmt>
 IFTK if
 LPARENT (
-INTCON 1
-<Number>
+IDENFR n
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
-<EqExp>
-NEQ !=
-IDENFR n
-<LVal>
+GEQ >=
+INTCON 1
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -723,7 +720,15 @@ IDENFR n
 <LAndExp>
 <LOrExp>
 OR ||
-INTCON 1
+IDENFR n
+<LVal>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+<RelExp>
+LSS <
+INTCON 100
 <Number>
 <PrimaryExp>
 <UnaryExp>
@@ -745,16 +750,8 @@ RPARENT )
 <LAndExp>
 <LOrExp>
 OR ||
-INTCON 100
+INTCON 1
 <Number>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-<AddExp>
-<RelExp>
-LSS <
-IDENFR n
-<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -764,16 +761,17 @@ IDENFR n
 <LAndExp>
 <LOrExp>
 OR ||
-INTCON 1
-<Number>
+IDENFR n
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
-GEQ >=
-IDENFR n
-<LVal>
+<EqExp>
+NEQ !=
+INTCON 1
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -853,16 +851,16 @@ INTCON 0
 <Exp>
 <ForStmt>
 SEMICN ;
-INTCON 2
-<Number>
+IDENFR i
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
 LSS <
-IDENFR i
-<LVal>
+INTCON 2
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -876,15 +874,15 @@ SEMICN ;
 IDENFR i
 <LVal>
 ASSIGN =
-INTCON 1
-<Number>
+IDENFR i
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 PLUS +
-IDENFR i
-<LVal>
+INTCON 1
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -895,15 +893,15 @@ RPARENT )
 IDENFR n
 <LVal>
 ASSIGN =
-INTCON 1
-<Number>
+IDENFR n
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 MINU -
-IDENFR n
-<LVal>
+INTCON 1
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -926,16 +924,16 @@ INTCON 0
 <Exp>
 <ForStmt>
 SEMICN ;
-INTCON 1
-<Number>
+IDENFR i
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
 LSS <
-IDENFR i
-<LVal>
+INTCON 1
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -949,15 +947,15 @@ SEMICN ;
 IDENFR i
 <LVal>
 ASSIGN =
-INTCON 1
-<Number>
+IDENFR i
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 PLUS +
-IDENFR i
-<LVal>
+INTCON 1
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -983,16 +981,16 @@ INTCON 0
 <Exp>
 <ForStmt>
 SEMICN ;
-INTCON 2
-<Number>
+IDENFR i
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
 LSS <
-IDENFR i
-<LVal>
+INTCON 2
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -1006,15 +1004,15 @@ SEMICN ;
 IDENFR i
 <LVal>
 ASSIGN =
-INTCON 1
-<Number>
+IDENFR i
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 PLUS +
-IDENFR i
-<LVal>
+INTCON 1
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -1024,16 +1022,16 @@ IDENFR i
 RPARENT )
 IFTK if
 LPARENT (
-INTCON 2
-<Number>
+IDENFR i
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
 LSS <
-IDENFR i
-<LVal>
+INTCON 2
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -1051,15 +1049,15 @@ ELSETK else
 IDENFR n
 <LVal>
 ASSIGN =
-INTCON 1
-<Number>
+IDENFR n
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 PLUS +
-IDENFR n
-<LVal>
+INTCON 1
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -1086,6 +1084,14 @@ SEMICN ;
 FORTK for
 LPARENT (
 SEMICN ;
+IDENFR j
+<LVal>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+<RelExp>
+LSS <
 INTCON 2
 <Number>
 <PrimaryExp>
@@ -1093,14 +1099,6 @@ INTCON 2
 <MulExp>
 <AddExp>
 <RelExp>
-LSS <
-IDENFR j
-<LVal>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-<AddExp>
-<RelExp>
 <EqExp>
 <LAndExp>
 <LOrExp>
@@ -1109,15 +1107,15 @@ SEMICN ;
 IDENFR j
 <LVal>
 ASSIGN =
-INTCON 1
-<Number>
+IDENFR j
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 PLUS +
-IDENFR j
-<LVal>
+INTCON 1
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -1129,15 +1127,15 @@ LBRACE {
 IDENFR n
 <LVal>
 ASSIGN =
-INTCON 1
-<Number>
+IDENFR n
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 PLUS +
-IDENFR n
-<LVal>
+INTCON 1
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -1164,16 +1162,16 @@ SEMICN ;
 FORTK for
 LPARENT (
 SEMICN ;
-INTCON 1
-<Number>
+IDENFR j
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
 LSS <
-IDENFR j
-<LVal>
+INTCON 1
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -1189,15 +1187,15 @@ LBRACE {
 IDENFR j
 <LVal>
 ASSIGN =
-INTCON 1
-<Number>
+IDENFR j
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 PLUS +
-IDENFR j
-<LVal>
+INTCON 1
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -1227,15 +1225,15 @@ SEMICN ;
 IDENFR j
 <LVal>
 ASSIGN =
-INTCON 1
-<Number>
+IDENFR j
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 PLUS +
-IDENFR j
-<LVal>
+INTCON 1
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -1246,16 +1244,16 @@ RPARENT )
 LBRACE {
 IFTK if
 LPARENT (
-INTCON 1
-<Number>
+IDENFR j
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
 GRE >
-IDENFR j
-<LVal>
+INTCON 1
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -1297,16 +1295,16 @@ INTCON 0
 <Exp>
 <ForStmt>
 SEMICN ;
-INTCON 1
-<Number>
+IDENFR j
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 <RelExp>
 LSS <
-IDENFR j
-<LVal>
+INTCON 1
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -1329,19 +1327,19 @@ SEMICN ;
 IDENFR j
 <LVal>
 ASSIGN =
+IDENFR j
+<LVal>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+PLUS +
 INTCON 1
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
-PLUS +
-IDENFR j
-<LVal>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-<AddExp>
 <Exp>
 <ForStmt>
 RPARENT )
@@ -1383,8 +1381,8 @@ INTCON 0
 <Exp>
 <ForStmt>
 SEMICN ;
-INTCON 0
-<Number>
+IDENFR j
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -1392,8 +1390,8 @@ INTCON 0
 <RelExp>
 <EqExp>
 NEQ !=
-IDENFR j
-<LVal>
+INTCON 0
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
@@ -1407,15 +1405,15 @@ SEMICN ;
 IDENFR j
 <LVal>
 ASSIGN =
-INTCON 1
-<Number>
+IDENFR j
+<LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
 PLUS +
-IDENFR j
-<LVal>
+INTCON 1
+<Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
