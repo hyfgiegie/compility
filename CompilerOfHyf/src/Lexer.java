@@ -10,10 +10,27 @@ public class Lexer {
     private final int length;
     private final ArrayList<Token> tokenList;
     private final SignalTable signalTable;
+    private ArrayList<Error> errors = new ArrayList<>();
 
     private String errorContent;
 
     public Lexer(ArrayList<Integer> content) {
+        this.tokenUnit = new StringBuffer();
+        this.position = 0;
+        this.lines = 1;
+        this.content = content;
+        this.length = content.size();
+        this.tokenList = new ArrayList<>();
+        this.signalTable = new SignalTable();
+        this.errorContent = "";
+    }
+
+    public Lexer(String string) {
+        ArrayList<Integer> content = new ArrayList<>();
+        char[] chars = string.toCharArray();
+        for (char ch : chars) {
+            content.add((int) ch);
+        }
         this.tokenUnit = new StringBuffer();
         this.position = 0;
         this.lines = 1;
@@ -80,12 +97,11 @@ public class Lexer {
         return normal.indexOf((char) ch) != -1;
     }
 
-    public boolean parseText() {
+    public void parseText() {
         skipWhite();
         while (parseUnit()) {
             skipWhite();
         }
-        return errorContent.length() == 0;
     }
 
     //return false means end of text or error
@@ -109,16 +125,16 @@ public class Lexer {
             tokenList.add(new Token("INTCON", tokenUnit.toString(), lines));
         } else if (ch == '"') {
             tokenUnit.append((char) ch);
-            parseString();
+            int num = parseString();
             if (tokenUnit.length() < 2) {
                 //error
                 errorContent = "There is an unknown signal " + tokenUnit.toString() + " in lines-" + lines;
-                return false;
+
             } else if (tokenUnit.charAt(tokenUnit.length() - 1) != '"') {
                 errorContent = "There is an unfinished formatString in lines-" + lines;
-                return false;
+
             }
-            tokenList.add(new Token("STRCON", tokenUnit.toString(), lines));
+            tokenList.add(new Token("STRCON", tokenUnit.toString(), lines, num));
         } else if (isLegalSig(ch)) {
             tokenUnit.append((char) ch);
             parseSignal();
@@ -130,13 +146,13 @@ public class Lexer {
                 if (type != null) tokenList.add(new Token(type, tokenUnit.toString(), lines));
                 else {
                     errorContent = "There is an unknown signal " + tokenUnit.toString() + " in lines-" + lines;
-                    return false;//means error of single | or &
+                    //means error of single | or &
                 }
             }
         } else {
             //error of un-known signal
             errorContent = "There is an unknown signal " + (char) ch + " in lines-" + lines;
-            return false;
+
         }
         return true;
     }
@@ -159,17 +175,52 @@ public class Lexer {
         flashBack();
     }
 
-    private void parseString() {
+    private int parseString() {
+        int cnt = 0;
+
         int ch = read();
+        if (!isLegalChar((char) ch) && ch != '"') errors.add(new Error(lines, 'a'));
+        int next = read();
+        flashBack();
+        if (ch == '%' && next == 'd') cnt++;
+
         while (ch != '"' && ch != -1) {
             tokenUnit.append((char) ch);
+
             ch = read();
+            if (!isLegalChar((char) ch) && ch != '"') errors.add(new Error(lines, 'a'));
+            next = read();
+            flashBack();
+            if (ch == '%' && next == 'd') cnt++;
         }
+
         if (ch == -1) {
             flashBack();
         } else {
             tokenUnit.append((char) ch);
         }
+        return cnt;
+    }
+
+    private boolean isLegalChar(char ch) {
+        //normal char
+        if (ch == 32 || ch == 33 || (ch >= 40 && ch <= 126)) {
+            if (ch == 92) {
+                int next = read();
+                flashBack();
+                return next == 'n';
+            } else {
+                return true;
+            }
+        }
+
+        if (ch == '%') {
+            int next = read();
+            flashBack();
+            return next == 'd';
+        }
+
+        return false;
     }
 
     private void parseSignal() {
@@ -236,5 +287,9 @@ public class Lexer {
 
     public String getErrorContent() {
         return errorContent;
+    }
+
+    public ArrayList<Error> getErrors() {
+        return errors;
     }
 }

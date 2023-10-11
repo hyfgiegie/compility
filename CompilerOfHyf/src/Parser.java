@@ -2,9 +2,19 @@ package src;
 
 import java.util.ArrayList;
 
-public class Parser {
+public class Parser implements SymbolMacro {
     private ArrayList<Token> tokens;
     private int position;
+
+    private ArrayList<Error> errors = new ArrayList<>();
+    private SymbolTableStack tableStack = new SymbolTableStack();
+    private Symbol curSymbol = new Symbol();
+    private ArrayList<Symbol> funcFParaSymbols = new ArrayList<>();
+
+    private boolean isInFuncDef = false;
+    private int returnLines = -1;
+    private int rBRaceLines = -1;
+    private int inForDepth = 0;
 
     public Parser(ArrayList<Token> tokens) {
         this.tokens = tokens;
@@ -17,6 +27,7 @@ public class Parser {
 
     //CompUnit → {Decl} {FuncDef} MainFuncDef
     public Factor parse() {
+        tableStack.push(new SymbolTable());
         Factor compUnit = new Factor("CompUnit");
         while (!isMainDecl()) {
             if (!isFuncDef()) {
@@ -26,6 +37,7 @@ public class Parser {
             }
         }
         compUnit.addChild(parseMainFuncDef());
+        tableStack.pop();
         return compUnit;
     }
 
@@ -69,6 +81,8 @@ public class Parser {
         if (getCurToken().getValue().equals(";")) {
             constDecl.addChild(new Factor(getCurToken()));
             position++;
+        } else {
+            errors.add(new Error(constDecl.getEndLine(), 'i'));
         }
         return constDecl;
     }
@@ -87,23 +101,37 @@ public class Parser {
     //ConstDef → Ident { '[' ConstExp ']' } '=' ConstInitVal
     private Factor parseConstDef() {
         Factor constDef = new Factor("ConstDef");
+        curSymbol = new Symbol();
+        int lines = 0;
         if (getCurToken().getType().equals("IDENFR")) {
             constDef.addChild(new Factor(getCurToken()));
+            lines = getCurToken().getLines();
+            curSymbol.setName(getCurToken().getValue());
+            curSymbol.setType(INT);
+            curSymbol.setKind(CON);
             position++;
         }
         while (getCurToken().getValue().equals("[")) {
             constDef.addChild(new Factor(getCurToken()));
             position++;
             constDef.addChild(parseConstExp());
+            curSymbol.addDimension();
             if (getCurToken().getValue().equals("]")) {
                 constDef.addChild(new Factor(getCurToken()));
                 position++;
+            } else {
+                errors.add(new Error(constDef.getEndLine(), 'k'));
             }
         }
         if (getCurToken().getValue().equals("=")) {
             constDef.addChild(new Factor(getCurToken()));
             position++;
             constDef.addChild(parseConstInitVal());
+        }
+        if (tableStack.isReDefined(curSymbol.getName())) {
+            errors.add(new Error(lines, 'b'));
+        } else {
+            tableStack.peek().addSymbol(curSymbol);
         }
         return constDef;
     }
@@ -149,6 +177,8 @@ public class Parser {
         if (getCurToken().getValue().equals(";")) {
             varDecl.addChild(new Factor(getCurToken()));
             position++;
+        } else {
+            errors.add(new Error(varDecl.getEndLine(), 'i'));
         }
         return varDecl;
     }
@@ -156,24 +186,38 @@ public class Parser {
     //VarDef → Ident { '[' ConstExp ']' }
     //       | Ident { '[' ConstExp ']' } '=' InitVal
     private Factor parseVarDef() {
+        curSymbol = new Symbol();
         Factor varDef = new Factor("VarDef");
+        int lines = 0;
         if (getCurToken().getType().equals("IDENFR")) {
             varDef.addChild(new Factor(getCurToken()));
+            lines = getCurToken().getLines();
+            curSymbol.setName(getCurToken().getValue());
+            curSymbol.setType(INT);
+            curSymbol.setKind(VAR);
             position++;
         }
         while (getCurToken().getValue().equals("[")) {
             varDef.addChild(new Factor(getCurToken()));
             position++;
             varDef.addChild(parseConstExp());
+            curSymbol.addDimension();
             if (getCurToken().getValue().equals("]")) {
                 varDef.addChild(new Factor(getCurToken()));
                 position++;
+            } else {
+                errors.add(new Error(varDef.getEndLine(), 'k'));
             }
         }
         if (getCurToken().getValue().equals("=")) {
             varDef.addChild(new Factor(getCurToken()));
             position++;
             varDef.addChild(parseInitVal());
+        }
+        if (tableStack.isReDefined(curSymbol.getName())) {
+            errors.add(new Error(lines, 'b'));
+        } else {
+            tableStack.peek().addSymbol(curSymbol);
         }
         return varDef;
     }
@@ -208,10 +252,15 @@ public class Parser {
 
     //FuncDef → FuncType Ident '(' [FuncFParams] ')' Block
     private Factor parseFuncDef() {
+        curSymbol = new Symbol();
+        curSymbol.setKind(FUNC);
+        int lines = 0;
         Factor funcDef = new Factor("FuncDef");
         funcDef.addChild(parseFuncType());
         if (getCurToken().getType().equals("IDENFR")) {
             funcDef.addChild(new Factor(getCurToken()));
+            lines = getCurToken().getLines();
+            curSymbol.setName(getCurToken().getValue());
             position++;
         }
         if (getCurToken().getValue().equals("(")) {
@@ -224,8 +273,28 @@ public class Parser {
         if (getCurToken().getValue().equals(")")) {
             funcDef.addChild(new Factor(getCurToken()));
             position++;
+        } else {
+            errors.add(new Error(funcDef.getEndLine(), 'j'));
         }
+        if (tableStack.isReDefined(curSymbol.getName())) {
+            errors.add(new Error(lines, 'b'));
+        } else {
+            tableStack.peek().addSymbol(curSymbol);
+        }
+        isInFuncDef = true;
+        Symbol funcSymbol = curSymbol;
         funcDef.addChild(parseBlock());
+        if (funcSymbol.getType() == VOID) {
+            if (funcDef.getLastChildren().hasReturnSomething()) {
+                errors.add(new Error(returnLines , 'f'));
+            }
+        } else if (funcSymbol.getType() == INT) {
+            if (!funcDef.getLastChildren().hasReturn()) {
+                errors.add(new Error(rBRaceLines , 'g'));
+            }
+        }
+
+        funcFParaSymbols.clear();
         return funcDef;
     }
 
@@ -235,6 +304,11 @@ public class Parser {
                 getCurToken().getValue().equals("int")) {
             Factor funcType = new Factor("FuncType");
             funcType.addChild(new Factor(getCurToken()));
+            if (getCurToken().getValue().equals("void")) {
+                curSymbol.setType(VOID);
+            } else {
+                curSymbol.setType(INT);
+            }
             position++;
             return funcType;
         }
@@ -256,29 +330,56 @@ public class Parser {
     //FuncFParam → BType Ident ['[' ']' { '[' ConstExp ']' }]
     private Factor parseFuncFParam() {
         Factor funcFParam = new Factor("FuncFParam");
+        Symbol paraSymbol = new Symbol();
+        int lines = 0;
         funcFParam.addChild(parseBType());
+        paraSymbol.setType(INT);
+        paraSymbol.setKind(VAR);
         if (getCurToken().getType().equals("IDENFR")) {
             funcFParam.addChild(new Factor(getCurToken()));
+            lines = getCurToken().getLines();
+            paraSymbol.setName(getCurToken().getValue());
             position++;
         }
         if (getCurToken().getValue().equals("[")) {
             funcFParam.addChild(new Factor(getCurToken()));
             position++;
+            paraSymbol.addDimension();
             if (getCurToken().getValue().equals("]")) {
                 funcFParam.addChild(new Factor(getCurToken()));
                 position++;
+            } else {
+                errors.add(new Error(funcFParam.getEndLine(), 'k'));
             }
             while (getCurToken().getValue().equals("[")) {
                 funcFParam.addChild(new Factor(getCurToken()));
                 position++;
                 funcFParam.addChild(parseConstExp());
+                paraSymbol.addDimension();
                 if (getCurToken().getValue().equals("]")) {
                     funcFParam.addChild(new Factor(getCurToken()));
                     position++;
+                } else {
+                    errors.add(new Error(funcFParam.getEndLine(), 'k'));
                 }
             }
         }
+        if (containsReDefinePara(paraSymbol)) {
+            errors.add(new Error(lines, 'b'));
+        } else {
+            curSymbol.addPara(paraSymbol);
+            funcFParaSymbols.add(paraSymbol);
+        }
         return funcFParam;
+    }
+
+    private boolean containsReDefinePara(Symbol paraSymbol) {
+        for (Symbol symbol : funcFParaSymbols) {
+            if (symbol.getName().equals(paraSymbol.getName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     //MainFuncDef → 'int' 'main' '(' ')' Block
@@ -299,8 +400,13 @@ public class Parser {
         if (getCurToken().getValue().equals(")")) {
             mainFuncDef.addChild(new Factor(getCurToken()));
             position++;
+        } else {
+            errors.add(new Error(mainFuncDef.getEndLine(), 'j'));
         }
         mainFuncDef.addChild(parseBlock());
+        if (!mainFuncDef.getLastChildren().hasReturn()) {
+            errors.add(new Error(mainFuncDef.getEndLine(), 'g'));
+        }
         return mainFuncDef;
     }
 
@@ -311,11 +417,22 @@ public class Parser {
             block.addChild(new Factor(getCurToken()));
             position++;
         }
+        tableStack.push(new SymbolTable());
+
+        if (isInFuncDef) {
+            for (Symbol symbol : funcFParaSymbols) {
+                tableStack.peek().addSymbol(symbol);
+            }
+            isInFuncDef = false;
+        }
+
         while (!getCurToken().getValue().equals("}")) {
             block.addChild(parseBlockItem());
         }
         if (getCurToken().getValue().equals("}")) {
             block.addChild(new Factor(getCurToken()));
+            rBRaceLines = getCurToken().getLines();
+            tableStack.pop();
             position++;
         }
         return block;
@@ -328,7 +445,6 @@ public class Parser {
                 || getCurToken().getValue().equals("int")) {
             blockItem.addChild(parseDecl());
         } else {
-//            System.out.println(tokens.get(position-1).getValue() + " " + getCurToken().getValue() + "" + tokens.get(position+1).getValue() + " " + getCurToken().getLines());
             blockItem.addChild(parseStmt());
         }
         return blockItem;
@@ -356,63 +472,78 @@ public class Parser {
             if (getCurToken().getValue().equals("(")) {
                 stmt.addChild(new Factor(getCurToken()));
                 position++;
-                stmt.addChild(parseCond());
-                if (getCurToken().getValue().equals(")")) {
-                    stmt.addChild(new Factor(getCurToken()));
-                    position++;
-                    stmt.addChild(parseStmt());
-                    if (getCurToken().getValue().equals("else")) {
-                        stmt.addChild(new Factor(getCurToken()));
-                        position++;
-                        stmt.addChild(parseStmt());
-                    }
-                }
+            }
+            stmt.addChild(parseCond());
+            if (getCurToken().getValue().equals(")")) {
+                stmt.addChild(new Factor(getCurToken()));
+                position++;
+            } else {
+                errors.add(new Error(stmt.getEndLine(), 'j'));
+            }
+            stmt.addChild(parseStmt());
+            if (getCurToken().getValue().equals("else")) {
+                stmt.addChild(new Factor(getCurToken()));
+                position++;
+                stmt.addChild(parseStmt());
             }
         } else if (nowValue.equals("for")) {
             stmt.addChild(new Factor(getCurToken()));
+            inForDepth++;
             position++;
             if (getCurToken().getValue().equals("(")) {
                 stmt.addChild(new Factor(getCurToken()));
                 position++;
-                if (!getCurToken().getValue().equals(";")) {
-                    stmt.addChild(parseForStmt());
-                }
-                if (getCurToken().getValue().equals(";")) {
-                    stmt.addChild(new Factor(getCurToken()));
-                    position++;
-                    if (!getCurToken().getValue().equals(";")) {
-                        stmt.addChild(parseCond());
-                    }
-                    if (getCurToken().getValue().equals(";")) {
-                        stmt.addChild(new Factor(getCurToken()));
-                        position++;
-                        if (!getCurToken().getValue().equals(")")) {
-                            stmt.addChild(parseForStmt());
-                        }
-                        if (getCurToken().getValue().equals(")")) {
-                            stmt.addChild(new Factor(getCurToken()));
-                            position++;
-                            stmt.addChild(parseStmt());
-                        }
-                    }
-                }
             }
+            if (!getCurToken().getValue().equals(";")) {
+                stmt.addChild(parseForStmt());
+            }
+            if (getCurToken().getValue().equals(";")) {
+                stmt.addChild(new Factor(getCurToken()));
+                position++;
+            }
+            if (!getCurToken().getValue().equals(";")) {
+                stmt.addChild(parseCond());
+            }
+            if (getCurToken().getValue().equals(";")) {
+                stmt.addChild(new Factor(getCurToken()));
+                position++;
+            }
+            if (!getCurToken().getValue().equals(")")) {
+                stmt.addChild(parseForStmt());
+            }
+            if (getCurToken().getValue().equals(")")) {
+                stmt.addChild(new Factor(getCurToken()));
+                position++;
+            }
+            stmt.addChild(parseStmt());
+            inForDepth--;
         } else if (nowValue.equals("break")) {
             stmt.addChild(new Factor(getCurToken()));
+            if (inForDepth <= 0) {
+                errors.add(new Error(getCurToken().getLines(), 'm'));
+            }
             position++;
             if (getCurToken().getValue().equals(";")) {
                 stmt.addChild(new Factor(getCurToken()));
                 position++;
+            } else {
+                errors.add(new Error(stmt.getEndLine(), 'i'));
             }
         } else if (nowValue.equals("continue")) {
             stmt.addChild(new Factor(getCurToken()));
+            if (inForDepth <= 0) {
+                errors.add(new Error(getCurToken().getLines(), 'm'));
+            }
             position++;
             if (getCurToken().getValue().equals(";")) {
                 stmt.addChild(new Factor(getCurToken()));
                 position++;
+            } else {
+                errors.add(new Error(stmt.getEndLine(), 'i'));
             }
         } else if (nowValue.equals("return")) {
             stmt.addChild(new Factor(getCurToken()));
+            returnLines = getCurToken().getLines();
             position++;
             if (!getCurToken().getValue().equals(";")) {
                 stmt.addChild(parseExp());
@@ -420,30 +551,44 @@ public class Parser {
             if (getCurToken().getValue().equals(";")) {
                 stmt.addChild(new Factor(getCurToken()));
                 position++;
+            } else {
+                errors.add(new Error(stmt.getEndLine(), 'i'));
             }
         } else if (nowValue.equals("printf")) {
             stmt.addChild(new Factor(getCurToken()));
+            int lines = getCurToken().getLines();
             position++;
             if (getCurToken().getValue().equals("(")) {
                 stmt.addChild(new Factor(getCurToken()));
                 position++;
             }
+            int num = 0;
             if (getCurToken().getType().equals("STRCON")) {
                 stmt.addChild(new Factor(getCurToken()));
+                num = getCurToken().getNumOfFormatChars();
                 position++;
             }
+            int cnt = 0;
             while (getCurToken().getValue().equals(",")) {
                 stmt.addChild(new Factor(getCurToken()));
                 position++;
                 stmt.addChild(parseExp());
+                cnt++;
+            }
+            if (num != cnt) {
+                errors.add(new Error(lines, 'l'));
             }
             if (getCurToken().getValue().equals(")")) {
                 stmt.addChild(new Factor(getCurToken()));
                 position++;
+            } else {
+                errors.add(new Error(stmt.getEndLine(), 'j'));
             }
             if (getCurToken().getValue().equals(";")) {
                 stmt.addChild(new Factor(getCurToken()));
                 position++;
+            } else {
+                errors.add(new Error(stmt.getEndLine(), 'i'));
             }
         } else if (getCurToken().getType().equals("IDENFR")) {
             //first 3 types
@@ -453,7 +598,13 @@ public class Parser {
                 //first 2
                 position = retPosition;
                 stmt.addChild(parseLVal());
+
                 if (getCurToken().getValue().equals("=")) {
+                    Factor lVal = stmt.getLastChildren();
+                    Symbol symbol = tableStack.searchSymbol(lVal.toTokenList().get(0).getValue());
+                    if (symbol != null && symbol.getKind() == CON) {
+                        errors.add(new Error(lVal.getBeginLine(), 'h'));
+                    }
                     stmt.addChild(new Factor(getCurToken()));
                     position++;
                 }
@@ -468,10 +619,14 @@ public class Parser {
                     if (getCurToken().getValue().equals(")")) {
                         stmt.addChild(new Factor(getCurToken()));
                         position++;
+                    } else {
+                        errors.add(new Error(stmt.getEndLine(), 'j'));
                     }
                     if (getCurToken().getValue().equals(";")) {
                         stmt.addChild(new Factor(getCurToken()));
                         position++;
+                    } else {
+                        errors.add(new Error(stmt.getEndLine(), 'i'));
                     }
                 } else {
                     //the first
@@ -479,6 +634,8 @@ public class Parser {
                     if (getCurToken().getValue().equals(";")) {
                         stmt.addChild(new Factor(getCurToken()));
                         position++;
+                    } else {
+                        errors.add(new Error(stmt.getEndLine(), 'i'));
                     }
                 }
             } else if (getCurToken().getValue().equals(";")) {
@@ -486,6 +643,9 @@ public class Parser {
                 stmt.addChild(factor);
                 stmt.addChild(new Factor(getCurToken()));
                 position++;
+            } else {
+                stmt.addChild(factor);
+                errors.add(new Error(stmt.getEndLine(), 'i'));
             }
         } else if (nowValue.equals(";")) {
             stmt.addChild(new Factor(getCurToken()));
@@ -499,6 +659,8 @@ public class Parser {
             if (getCurToken().getValue().equals(";")) {
                 stmt.addChild(new Factor(getCurToken()));
                 position++;
+            } else {
+                errors.add(new Error(stmt.getEndLine(), 'i'));
             }
         }
         return stmt;
@@ -508,7 +670,12 @@ public class Parser {
     private Factor parseForStmt() {
         Factor forStmt = new Factor("ForStmt");
         forStmt.addChild(parseLVal());
+        Factor lVal = forStmt.getLastChildren();
+        Symbol symbol = tableStack.searchSymbol(lVal.toTokenList().get(0).getValue());
         if (getCurToken().getValue().equals("=")) {
+            if (symbol.getKind() == CON) {
+                errors.add(new Error(lVal.getEndLine(), 'h'));
+            }
             forStmt.addChild(new Factor(getCurToken()));
             position++;
         }
@@ -533,8 +700,14 @@ public class Parser {
     //LVal → Ident {'[' Exp ']'}
     private Factor parseLVal() {
         Factor lVal = new Factor("LVal");
+        int lines = 0;
         if (getCurToken().getType().equals("IDENFR")) {
             lVal.addChild(new Factor(getCurToken()));
+            lines = getCurToken().getLines();
+            Symbol symbol = tableStack.searchSymbol(getCurToken().getValue());
+            if (symbol == null || symbol.isFunc()) {
+                errors.add(new Error(lines, 'c'));
+            }
             position++;
         }
         while (getCurToken().getValue().equals("[")) {
@@ -544,6 +717,8 @@ public class Parser {
             if (getCurToken().getValue().equals("]")) {
                 lVal.addChild(new Factor(getCurToken()));
                 position++;
+            } else {
+                errors.add(new Error(lVal.getEndLine(), 'k'));
             }
         }
         return lVal;
@@ -593,23 +768,38 @@ public class Parser {
             unaryExp.addChild(parseUnaryExp());
         } else if (getCurToken().getType().equals("IDENFR")) {
             unaryExp.addChild(new Factor(getCurToken()));
+            Symbol symbol = tableStack.searchFuncSymbol(getCurToken().getValue());
+            int lines = getCurToken().getLines();
             position++;
             if (getCurToken().getValue().equals("(")) {
+                if (symbol == null) {
+                    errors.add(new Error(lines, 'c'));
+                }
                 unaryExp.addChild(new Factor(getCurToken()));
                 position++;
+                int numOfPara = 0;
                 if (!getCurToken().getValue().equals(")")) {
                     unaryExp.addChild(parseFuncRParams());
+                    numOfPara = unaryExp.getLastChildren().getNumberOfUnLeafChildren();
                 }
+                if (symbol != null && numOfPara != symbol.getNumOfFuncFParas()) {
+                    errors.add(new Error(lines, 'd'));
+                }
+
+                if (symbol != null && !unaryExp.getLastChildren().isLegalFuncRParams(symbol, tableStack)) {
+                    errors.add(new Error(lines, 'e'));
+                }
+
                 if (getCurToken().getValue().equals(")")) {
                     unaryExp.addChild(new Factor(getCurToken()));
                     position++;
+                } else {
+                    errors.add(new Error(unaryExp.getEndLine(), 'j'));
                 }
-            } else if (position < tokens.size()) {
+            } else {
                 unaryExp.deleteChild();
                 position--;
                 unaryExp.addChild(parsePrimaryExp());
-            } else {
-
             }
         } else {
 
@@ -756,5 +946,20 @@ public class Parser {
         Factor constExp = new Factor("ConstExp");
         constExp.addChild(parseAddExp());
         return constExp;
+    }
+
+    public ArrayList<Error> getErrors() {
+        //remove the same error that coursed by pre-read the exp in stmt
+        ArrayList<Error> newErrors = new ArrayList<>();
+        for (int i =0 ; i < errors.size(); i++) {
+            Error error = errors.get(i);
+            if (newErrors.contains(error)) {
+                continue;
+            } else {
+                newErrors.add(error);
+            }
+        }
+
+        return newErrors;
     }
 }
