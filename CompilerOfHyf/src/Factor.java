@@ -46,7 +46,7 @@ public class Factor {
     public int getNumberOfUnLeafChildren() {
         int cnt = 0;
         for (Factor factor : children) {
-            if (!factor.type.equals("Token")) {
+            if (!factor.type.equals("Token") && factor.toTokenList().size() > 0) {
                 cnt++;
             }
         }
@@ -161,7 +161,9 @@ public class Factor {
         } else {
             for (Factor factor : children) {
                 if (factor == null) continue;
-                tokens.addAll(factor.toTokenList());
+                for (Token token1 : factor.toTokenList()) {
+                    tokens.add(token1);
+                }
             }
         }
         return tokens;

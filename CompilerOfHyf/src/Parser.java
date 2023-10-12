@@ -719,6 +719,8 @@ public class Parser implements SymbolMacro {
                 position++;
             } else {
                 errors.add(new Error(lVal.getEndLine(), 'k'));
+                Factor factor = new Factor(new Token("RBRACK", "]", lVal.getEndLine()));
+                lVal.addChild(factor);
             }
         }
         return lVal;

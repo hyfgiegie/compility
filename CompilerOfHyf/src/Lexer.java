@@ -290,6 +290,16 @@ public class Lexer {
     }
 
     public ArrayList<Error> getErrors() {
-        return errors;
+        ArrayList<Error> newErrors = new ArrayList<>();
+        for (int i =0 ; i < errors.size(); i++) {
+            Error error = errors.get(i);
+            if (newErrors.contains(error)) {
+                continue;
+            } else {
+                newErrors.add(error);
+            }
+        }
+
+        return newErrors;
     }
 }

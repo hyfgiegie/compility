@@ -34,6 +34,7 @@ public class Compiler {
             Parser parser = new Parser(tokens);
             Factor root = parser.parse();
             output(root, fileWriter);
+            fileWriter.close();
 
 
             File errorFile = new File("error.txt");
