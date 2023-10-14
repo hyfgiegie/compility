@@ -3,7 +3,8 @@ void f1({
 }
 
 void f2(){
-
+    return
+    a = 1;
 }
 
 int main() {

@@ -61,16 +61,20 @@ public class Factor {
         }
     }
 
+    //Block
     public boolean hasReturnSomething() {
-        if (children.size() - 2 < 0) return false;
-        Factor factor = children.get(children.size() - 2);
-        ArrayList<Token> tokens = factor.toTokenList();
-        if (tokens.size() > 2 && tokens.get(0).getValue().equals("return") && !tokens.get(1).getValue().equals(";")) {
-            return true;
+        if (children.size() - 2 <= 0) return false;
+        for(int i = 1; i < children.size() - 1; i++) {
+            Factor factor = children.get(children.size() - 2);
+            ArrayList<Token> tokens = factor.toTokenList();
+            if (tokens.size() >= 2 && tokens.get(0).getValue().equals("return") && !tokens.get(1).getValue().equals(";")) {
+                return true;
+            }
         }
         return false;
     }
 
+    //Block
     public boolean hasReturn() {
         if (children.size() - 2 < 0) return false;
         Factor factor = children.get(children.size() - 2);
