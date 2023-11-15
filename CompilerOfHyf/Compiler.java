@@ -1,13 +1,10 @@
-import src.Error;
-import src.Factor;
-import src.Lexer;
-import src.Parser;
-import src.Token;
+import src.frontend.*;
+import src.frontend.Error;
+import src.ir.IRModule;
+import src.ir.Visitor;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 public class Compiler {
@@ -43,6 +40,13 @@ public class Compiler {
             ArrayList<Error> errors = lexer.getErrors();
             errors.addAll(parser.getErrors());
             outErrors(errors, fileWriter);
+            fileWriter.close();
+
+            File irFile = new File("llvm_ir.txt");
+            fileWriter = new FileWriter(irFile);
+            Visitor visitor = new Visitor(root);
+            visitor.visitCompUnit();
+            fileWriter.write(IRModule.getInstance().toString());
 
             fileReader.close();
             fileWriter.close();
