@@ -1,0 +1,364 @@
+declare i32 @getint()
+declare void @putint(i32)
+declare void @putch(i32)
+declare void @putstr(i8*)
+define dso_local i32 @main() {
+var3:
+  %var4 = alloca i32
+  store i32 0, i32* %var4
+  %var5 = load i32, i32* %var4
+  call void @putch(i32 108)
+  call void @putch(i32 95)
+  call void @putch(i32 99)
+  call void @putch(i32 111)
+  call void @putch(i32 110)
+  call void @putch(i32 115)
+  call void @putch(i32 116)
+  call void @putch(i32 95)
+  call void @putch(i32 48)
+  call void @putch(i32 44)
+  call void @putch(i32 32)
+  call void @putch(i32 115)
+  call void @putch(i32 104)
+  call void @putch(i32 111)
+  call void @putch(i32 117)
+  call void @putch(i32 108)
+  call void @putch(i32 100)
+  call void @putch(i32 32)
+  call void @putch(i32 98)
+  call void @putch(i32 101)
+  call void @putch(i32 32)
+  call void @putch(i32 48)
+  call void @putch(i32 58)
+  call void @putch(i32 32)
+  call void @putint(i32 %var5)
+  call void @putch(i32 10)
+  %var6 = alloca i32
+  %var7 = load i32, i32* %var4
+  %var8 = add i32 %var7, 1
+  store i32 %var8, i32* %var6
+  %var9 = load i32, i32* %var6
+  call void @putch(i32 108)
+  call void @putch(i32 95)
+  call void @putch(i32 99)
+  call void @putch(i32 111)
+  call void @putch(i32 110)
+  call void @putch(i32 115)
+  call void @putch(i32 116)
+  call void @putch(i32 95)
+  call void @putch(i32 49)
+  call void @putch(i32 44)
+  call void @putch(i32 32)
+  call void @putch(i32 115)
+  call void @putch(i32 104)
+  call void @putch(i32 111)
+  call void @putch(i32 117)
+  call void @putch(i32 108)
+  call void @putch(i32 100)
+  call void @putch(i32 32)
+  call void @putch(i32 98)
+  call void @putch(i32 101)
+  call void @putch(i32 32)
+  call void @putch(i32 49)
+  call void @putch(i32 58)
+  call void @putch(i32 32)
+  call void @putint(i32 %var9)
+  call void @putch(i32 10)
+  %var10 = alloca i32
+  store i32 2, i32* %var10
+  %var11 = alloca i32
+  %var12 = load i32, i32* %var6
+  %var13 = mul i32 2, %var12
+  store i32 %var13, i32* %var11
+  %var14 = alloca i32
+  store i32 4, i32* %var14
+  %var15 = load i32, i32* %var11
+  call void @putch(i32 108)
+  call void @putch(i32 95)
+  call void @putch(i32 99)
+  call void @putch(i32 111)
+  call void @putch(i32 110)
+  call void @putch(i32 115)
+  call void @putch(i32 116)
+  call void @putch(i32 95)
+  call void @putch(i32 51)
+  call void @putch(i32 44)
+  call void @putch(i32 32)
+  call void @putch(i32 115)
+  call void @putch(i32 104)
+  call void @putch(i32 111)
+  call void @putch(i32 117)
+  call void @putch(i32 108)
+  call void @putch(i32 100)
+  call void @putch(i32 32)
+  call void @putch(i32 98)
+  call void @putch(i32 101)
+  call void @putch(i32 32)
+  call void @putch(i32 50)
+  call void @putch(i32 58)
+  call void @putch(i32 32)
+  call void @putint(i32 %var15)
+  call void @putch(i32 10)
+  %var16 = alloca [3 x i32]
+  %var17 = getelementptr [3 x i32], [3 x i32]* %var16, i32 0, i32 0
+  store i32 1, i32* %var17
+  %var18 = getelementptr [3 x i32], [3 x i32]* %var16, i32 0, i32 1
+  store i32 2, i32* %var18
+  %var19 = getelementptr [3 x i32], [3 x i32]* %var16, i32 0, i32 2
+  store i32 3, i32* %var19
+  %var20 = alloca [2 x [2 x i32]]
+  %var21 = getelementptr [2 x [2 x i32]], [2 x [2 x i32]]* %var20, i32 0, i32 0
+  %var22 = getelementptr [2 x i32], [2 x i32]* %var21, i32 0, i32 0
+  store i32 1, i32* %var22
+  %var23 = getelementptr [2 x i32], [2 x i32]* %var21, i32 0, i32 1
+  %var24 = load i32, i32* %var6
+  store i32 %var24, i32* %var23
+  %var25 = getelementptr [2 x [2 x i32]], [2 x [2 x i32]]* %var20, i32 0, i32 1
+  %var26 = getelementptr [2 x i32], [2 x i32]* %var25, i32 0, i32 0
+  store i32 1, i32* %var26
+  %var27 = getelementptr [2 x i32], [2 x i32]* %var25, i32 0, i32 1
+  store i32 1, i32* %var27
+  %var28 = getelementptr [3 x i32], [3 x i32]* %var16, i32 0, i32 2
+  %var29 = load i32, i32* %var28
+  %var30 = getelementptr [2 x [2 x i32]], [2 x [2 x i32]]* %var20, i32 0, i32 0, i32 1
+  %var31 = load i32, i32* %var30
+  call void @putch(i32 108)
+  call void @putch(i32 95)
+  call void @putch(i32 99)
+  call void @putch(i32 111)
+  call void @putch(i32 110)
+  call void @putch(i32 115)
+  call void @putch(i32 116)
+  call void @putch(i32 95)
+  call void @putch(i32 53)
+  call void @putch(i32 91)
+  call void @putch(i32 50)
+  call void @putch(i32 93)
+  call void @putch(i32 44)
+  call void @putch(i32 32)
+  call void @putch(i32 108)
+  call void @putch(i32 95)
+  call void @putch(i32 99)
+  call void @putch(i32 111)
+  call void @putch(i32 110)
+  call void @putch(i32 115)
+  call void @putch(i32 116)
+  call void @putch(i32 95)
+  call void @putch(i32 54)
+  call void @putch(i32 91)
+  call void @putch(i32 48)
+  call void @putch(i32 93)
+  call void @putch(i32 91)
+  call void @putch(i32 49)
+  call void @putch(i32 93)
+  call void @putch(i32 44)
+  call void @putch(i32 32)
+  call void @putch(i32 115)
+  call void @putch(i32 104)
+  call void @putch(i32 111)
+  call void @putch(i32 117)
+  call void @putch(i32 108)
+  call void @putch(i32 100)
+  call void @putch(i32 32)
+  call void @putch(i32 98)
+  call void @putch(i32 101)
+  call void @putch(i32 32)
+  call void @putch(i32 51)
+  call void @putch(i32 44)
+  call void @putch(i32 32)
+  call void @putch(i32 49)
+  call void @putch(i32 58)
+  call void @putch(i32 32)
+  call void @putint(i32 %var29)
+  call void @putch(i32 44)
+  call void @putch(i32 32)
+  call void @putint(i32 %var31)
+  call void @putch(i32 10)
+  %var32 = alloca i32
+  store i32 0, i32* %var32
+  %var33 = load i32, i32* %var32
+  call void @putch(i32 108)
+  call void @putch(i32 95)
+  call void @putch(i32 118)
+  call void @putch(i32 97)
+  call void @putch(i32 114)
+  call void @putch(i32 95)
+  call void @putch(i32 48)
+  call void @putch(i32 44)
+  call void @putch(i32 32)
+  call void @putch(i32 115)
+  call void @putch(i32 104)
+  call void @putch(i32 111)
+  call void @putch(i32 117)
+  call void @putch(i32 108)
+  call void @putch(i32 100)
+  call void @putch(i32 32)
+  call void @putch(i32 98)
+  call void @putch(i32 101)
+  call void @putch(i32 32)
+  call void @putch(i32 48)
+  call void @putch(i32 58)
+  call void @putch(i32 32)
+  call void @putint(i32 %var33)
+  call void @putch(i32 10)
+  %var34 = alloca i32
+  %var35 = load i32, i32* %var32
+  %var36 = add i32 %var35, 1
+  %var37 = mul i32 2, %var36
+  store i32 %var37, i32* %var34
+  %var38 = load i32, i32* %var34
+  call void @putch(i32 108)
+  call void @putch(i32 95)
+  call void @putch(i32 118)
+  call void @putch(i32 97)
+  call void @putch(i32 114)
+  call void @putch(i32 95)
+  call void @putch(i32 49)
+  call void @putch(i32 44)
+  call void @putch(i32 32)
+  call void @putch(i32 115)
+  call void @putch(i32 104)
+  call void @putch(i32 111)
+  call void @putch(i32 117)
+  call void @putch(i32 108)
+  call void @putch(i32 100)
+  call void @putch(i32 32)
+  call void @putch(i32 98)
+  call void @putch(i32 101)
+  call void @putch(i32 32)
+  call void @putch(i32 50)
+  call void @putch(i32 58)
+  call void @putch(i32 32)
+  call void @putint(i32 %var38)
+  call void @putch(i32 10)
+  %var39 = alloca i32
+  %var40 = alloca i32
+  %var41 = load i32, i32* %var34
+  %var42 = mul i32 2, %var41
+  store i32 %var42, i32* %var40
+  %var43 = alloca i32
+  %var44 = load i32, i32* %var40
+  call void @putch(i32 108)
+  call void @putch(i32 95)
+  call void @putch(i32 118)
+  call void @putch(i32 97)
+  call void @putch(i32 114)
+  call void @putch(i32 95)
+  call void @putch(i32 51)
+  call void @putch(i32 44)
+  call void @putch(i32 32)
+  call void @putch(i32 115)
+  call void @putch(i32 104)
+  call void @putch(i32 111)
+  call void @putch(i32 117)
+  call void @putch(i32 108)
+  call void @putch(i32 100)
+  call void @putch(i32 32)
+  call void @putch(i32 98)
+  call void @putch(i32 101)
+  call void @putch(i32 32)
+  call void @putch(i32 52)
+  call void @putch(i32 58)
+  call void @putch(i32 32)
+  call void @putint(i32 %var44)
+  call void @putch(i32 10)
+  %var45 = alloca i32
+  store i32 5, i32* %var45
+  %var46 = load i32, i32* %var45
+  call void @putch(i32 108)
+  call void @putch(i32 95)
+  call void @putch(i32 118)
+  call void @putch(i32 97)
+  call void @putch(i32 114)
+  call void @putch(i32 95)
+  call void @putch(i32 53)
+  call void @putch(i32 44)
+  call void @putch(i32 32)
+  call void @putch(i32 115)
+  call void @putch(i32 104)
+  call void @putch(i32 111)
+  call void @putch(i32 117)
+  call void @putch(i32 108)
+  call void @putch(i32 100)
+  call void @putch(i32 32)
+  call void @putch(i32 98)
+  call void @putch(i32 101)
+  call void @putch(i32 32)
+  call void @putch(i32 53)
+  call void @putch(i32 58)
+  call void @putch(i32 32)
+  call void @putint(i32 %var46)
+  call void @putch(i32 10)
+  %var47 = alloca [3 x i32]
+  %var48 = getelementptr [3 x i32], [3 x i32]* %var47, i32 0, i32 0
+  store i32 1, i32* %var48
+  %var49 = getelementptr [3 x i32], [3 x i32]* %var47, i32 0, i32 1
+  store i32 2, i32* %var49
+  %var50 = getelementptr [3 x i32], [3 x i32]* %var47, i32 0, i32 2
+  store i32 3, i32* %var50
+  %var51 = alloca [2 x [2 x i32]]
+  %var52 = getelementptr [2 x [2 x i32]], [2 x [2 x i32]]* %var51, i32 0, i32 0
+  %var53 = getelementptr [2 x i32], [2 x i32]* %var52, i32 0, i32 0
+  store i32 1, i32* %var53
+  %var54 = getelementptr [2 x i32], [2 x i32]* %var52, i32 0, i32 1
+  %var55 = load i32, i32* %var6
+  store i32 %var55, i32* %var54
+  %var56 = getelementptr [2 x [2 x i32]], [2 x [2 x i32]]* %var51, i32 0, i32 1
+  %var57 = getelementptr [2 x i32], [2 x i32]* %var56, i32 0, i32 0
+  store i32 1, i32* %var57
+  %var58 = getelementptr [2 x i32], [2 x i32]* %var56, i32 0, i32 1
+  store i32 1, i32* %var58
+  %var59 = getelementptr [3 x i32], [3 x i32]* %var47, i32 0, i32 2
+  %var60 = load i32, i32* %var59
+  %var61 = getelementptr [2 x [2 x i32]], [2 x [2 x i32]]* %var51, i32 0, i32 0, i32 1
+  %var62 = load i32, i32* %var61
+  call void @putch(i32 108)
+  call void @putch(i32 95)
+  call void @putch(i32 118)
+  call void @putch(i32 97)
+  call void @putch(i32 114)
+  call void @putch(i32 95)
+  call void @putch(i32 54)
+  call void @putch(i32 91)
+  call void @putch(i32 50)
+  call void @putch(i32 93)
+  call void @putch(i32 44)
+  call void @putch(i32 32)
+  call void @putch(i32 108)
+  call void @putch(i32 95)
+  call void @putch(i32 118)
+  call void @putch(i32 97)
+  call void @putch(i32 114)
+  call void @putch(i32 95)
+  call void @putch(i32 55)
+  call void @putch(i32 91)
+  call void @putch(i32 48)
+  call void @putch(i32 93)
+  call void @putch(i32 91)
+  call void @putch(i32 49)
+  call void @putch(i32 93)
+  call void @putch(i32 44)
+  call void @putch(i32 32)
+  call void @putch(i32 115)
+  call void @putch(i32 104)
+  call void @putch(i32 111)
+  call void @putch(i32 117)
+  call void @putch(i32 108)
+  call void @putch(i32 100)
+  call void @putch(i32 32)
+  call void @putch(i32 98)
+  call void @putch(i32 101)
+  call void @putch(i32 32)
+  call void @putch(i32 51)
+  call void @putch(i32 44)
+  call void @putch(i32 32)
+  call void @putch(i32 49)
+  call void @putch(i32 58)
+  call void @putch(i32 32)
+  call void @putint(i32 %var60)
+  call void @putch(i32 44)
+  call void @putch(i32 32)
+  call void @putint(i32 %var62)
+  ret i32 0
+}
+

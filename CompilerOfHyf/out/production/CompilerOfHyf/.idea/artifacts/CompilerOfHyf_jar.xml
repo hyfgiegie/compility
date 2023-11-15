@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="CompilerOfHyf:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CompilerOfHyf_jar</output-path>
+    <root id="root">
+      <element id="archive" name="CompilerOfHyf.jar">
+        <element id="module-output" name="CompilerOfHyf" />
+      </element>
+    </root>
+  </artifact>
+</component>
